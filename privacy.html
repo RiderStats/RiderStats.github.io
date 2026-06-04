@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidad — RiderStats</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange: #FF6B35;
+      --dark: #0D0D1A;
+      --card: #16162A;
+      --border: #2A2A4A;
+      --text: #F0F0FF;
+      --muted: #8888AA;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--dark); color: var(--text); line-height: 1.7;
+    }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-size: 20px; font-weight: 800; color: var(--orange); text-decoration: none; }
+    main { max-width: 740px; margin: 0 auto; padding: 60px 24px 80px; }
+    h1 { font-size: 32px; font-weight: 900; margin-bottom: 8px; letter-spacing: -1px; }
+    .date { font-size: 13px; color: var(--muted); margin-bottom: 40px; }
+    h2 { font-size: 18px; font-weight: 700; margin: 36px 0 10px; color: var(--orange); }
+    p { font-size: 15px; color: #CCCCDD; margin-bottom: 14px; }
+    ul { padding-left: 20px; margin-bottom: 14px; }
+    li { font-size: 15px; color: #CCCCDD; margin-bottom: 6px; }
+    a { color: var(--orange); }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 12px; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">RiderStats</a>
+  </nav>
+
+  <main>
+    <h1>Política de Privacidad</h1>
+    <p class="date">Última actualización: junio 2025</p>
+
+    <p>RiderStats ("nosotros", "la app") se compromete a proteger tu privacidad. Esta política explica qué datos recopilamos, cómo los usamos y tus derechos.</p>
+
+    <h2>1. Datos que recopilamos</h2>
+    <ul>
+      <li><strong>Cuenta:</strong> nombre, email y contraseña (hash). Opcionalmente, ciudad, país y tipo de vehículo.</li>
+      <li><strong>Registros económicos:</strong> ingresos, gastos y propinas que introduces tú mismo.</li>
+      <li><strong>Ubicación GPS</strong> (opcional): solo cuando usas el rastreador de ruta. No se almacena la ubicación exacta; únicamente la distancia recorrida.</li>
+      <li><strong>Token de notificaciones push:</strong> para enviarte alertas y resúmenes semanales.</li>
+      <li><strong>Actividad en la app:</strong> última conexión, racha de registros y uso de funciones premium.</li>
+    </ul>
+
+    <h2>2. Cómo usamos tus datos</h2>
+    <ul>
+      <li>Mostrarte tus estadísticas personales de ingresos y gastos.</li>
+      <li>Calcular el ranking global y las recompensas de RiderCoins.</li>
+      <li>Enviarte notificaciones push sobre duelos, resúmenes y novedades.</li>
+      <li>Mejorar la app mediante análisis agregados y anónimos.</li>
+    </ul>
+
+    <h2>3. Compartición de datos</h2>
+    <p>No vendemos ni cedemos tus datos personales a terceros. Únicamente trabajamos con:</p>
+    <ul>
+      <li><strong>Firebase (Google):</strong> autenticación y backup en la nube (solo usuarios Premium).</li>
+      <li><strong>Expo / React Native:</strong> envío de notificaciones push.</li>
+      <li><strong>Railway:</strong> infraestructura del servidor. Los datos se almacenan en PostgreSQL en servidores de Railway (Europa).</li>
+      <li><strong>RevenueCat:</strong> gestión de compras in-app.</li>
+    </ul>
+
+    <h2>4. Seguridad</h2>
+    <p>Las contraseñas se almacenan como hash SHA-256. Las comunicaciones entre la app y el servidor van cifradas mediante HTTPS. El acceso a los datos está restringido por autenticación de usuario.</p>
+
+    <h2>5. Tus derechos</h2>
+    <p>Puedes en cualquier momento:</p>
+    <ul>
+      <li>Acceder a todos tus datos desde la app.</li>
+      <li>Eliminar tu cuenta y todos tus datos desde Ajustes → Eliminar cuenta.</li>
+      <li>Solicitar una copia de tus datos escribiendo a <a href="mailto:riderstats@gmail.com">riderstats@gmail.com</a>.</li>
+    </ul>
+
+    <h2>6. Menores</h2>
+    <p>RiderStats no está dirigida a menores de 16 años. No recopilamos conscientemente datos de menores.</p>
+
+    <h2>7. Cambios en esta política</h2>
+    <p>Notificaremos cualquier cambio relevante mediante una notificación en la app. El uso continuado de RiderStats implica la aceptación de la política actualizada.</p>
+
+    <h2>8. Contacto</h2>
+    <p>Para cualquier consulta sobre privacidad: <a href="mailto:riderstats@gmail.com">riderstats@gmail.com</a></p>
+  </main>
+
+  <footer>© 2025 RiderStats. Todos los derechos reservados.</footer>
+
+</body>
+</html>
