@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" id="html-root">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RiderStats — App para riders y repartidores</title>
+  <title id="page-title">RiderStats — App para riders y repartidores</title>
   <meta name="description" content="Controla tus ingresos, gastos y estadísticas como rider. Disponible gratis en Android." />
   <meta property="og:title" content="RiderStats" />
   <meta property="og:description" content="La app para riders y repartidores. Registra ingresos, gastos y conecta con otros riders." />
@@ -23,8 +23,6 @@
     }
     html { scroll-behavior: smooth; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--dark); color: var(--text); line-height: 1.6; }
-
-    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
@@ -38,8 +36,13 @@
     .nav-logo { font-size: 18px; font-weight: 800; color: var(--orange); }
     .nav-link { font-size: 13px; color: var(--muted); text-decoration: none; }
     .nav-link:hover { color: var(--text); }
-
-    /* HERO */
+    .lang-switcher { position: relative; }
+    .lang-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); font-size: 12px; padding: 5px 10px; border-radius: 8px; cursor: pointer; white-space: nowrap; transition: border-color 0.2s, color 0.2s; }
+    .lang-btn:hover { border-color: var(--orange); color: var(--text); }
+    .lang-dropdown { display: none; position: absolute; right: 0; top: calc(100% + 6px); background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; min-width: 145px; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+    .lang-dropdown.open { display: block; }
+    .lang-dropdown div { padding: 9px 14px; font-size: 13px; cursor: pointer; color: var(--text); transition: background 0.15s; }
+    .lang-dropdown div:hover { background: var(--card2); }
     .hero {
       min-height: 100vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -51,8 +54,6 @@
     h1 { font-size: clamp(38px, 8vw, 76px); font-weight: 900; line-height: 1.05; letter-spacing: -2px; margin-bottom: 18px; }
     h1 span { color: var(--orange); }
     .hero-sub { font-size: clamp(15px, 2.5vw, 19px); color: var(--muted); max-width: 500px; margin: 0 auto 40px; }
-
-    /* COMING SOON BUTTON */
     .btn-soon {
       display: inline-flex; align-items: center; gap: 14px;
       background: linear-gradient(135deg, rgba(255,107,53,0.12), rgba(255,107,53,0.06));
@@ -66,53 +67,28 @@
     .btn-soon-texts { text-align: left; }
     .btn-soon-label { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
     .btn-soon-store { font-size: 17px; font-weight: 800; color: var(--text); }
-    .btn-soon-chip {
-      background: var(--orange); color: #fff;
-      font-size: 10px; font-weight: 800; letter-spacing: 0.5px;
-      padding: 3px 9px; border-radius: 99px; white-space: nowrap;
-    }
-
+    .btn-soon-chip { background: var(--orange); color: #fff; font-size: 10px; font-weight: 800; letter-spacing: 0.5px; padding: 3px 9px; border-radius: 99px; white-space: nowrap; }
     .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--muted); font-size: 14px; font-weight: 600; padding: 14px 24px; border-radius: 14px; text-decoration: none; border: 1px solid var(--border); transition: border-color 0.2s, color 0.2s; }
     .btn-secondary:hover { border-color: var(--orange); color: var(--text); }
     .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; align-items: center; }
-
-    /* RC COIN */
-    .rc-coin {
-      width: 42px; height: 42px; border-radius: 50%;
-      background: linear-gradient(145deg, #FFD84D, #F59E0B, #D97706);
-      border: 2.5px solid #B45309;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 12px; color: #78350F;
-      box-shadow: 0 3px 10px rgba(245,158,11,0.45), inset 0 1px 2px rgba(255,255,255,0.35);
-      margin: 0 auto 6px; letter-spacing: -0.5px;
-    }
-
-    /* STATS */
+    .rc-coin { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(145deg, #FFD84D, #F59E0B, #D97706); border: 2.5px solid #B45309; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 12px; color: #78350F; box-shadow: 0 3px 10px rgba(245,158,11,0.45), inset 0 1px 2px rgba(255,255,255,0.35); margin: 0 auto 6px; letter-spacing: -0.5px; }
     .stats-band { display: flex; justify-content: center; flex-wrap: wrap; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .stat-item { padding: 26px 40px; text-align: center; border-right: 1px solid var(--border); }
     .stat-item:last-child { border-right: none; }
     .stat-num { font-size: 30px; font-weight: 900; color: var(--orange); }
     .stat-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
-
-    /* SECTIONS */
     section { padding: 72px 24px; max-width: 1080px; margin: 0 auto; }
     .section-label { font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
     h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 900; letter-spacing: -1px; margin-bottom: 14px; }
     .section-sub { color: var(--muted); font-size: 15px; max-width: 460px; margin-bottom: 40px; }
-
-    /* FEATURES GRID */
     .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
     .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; transition: border-color 0.2s; }
     .feature-card:hover { border-color: rgba(255,107,53,0.4); }
     .feature-icon { font-size: 26px; margin-bottom: 12px; }
     .feature-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
     .feature-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
-
-    /* PLATFORMS */
     .platforms-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
     .platform-pill { background: var(--card); border: 1px solid var(--border); border-radius: 99px; padding: 9px 18px; font-size: 13px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 6px; }
-
-    /* PREMIUM */
     .premium-section { padding: 72px 24px; background: linear-gradient(135deg, rgba(255,107,53,0.07) 0%, rgba(255,107,53,0.02) 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .premium-inner { max-width: 1080px; margin: 0 auto; }
     .prem-price { display: inline-block; background: var(--orange); color: #fff; font-size: 15px; font-weight: 800; padding: 8px 20px; border-radius: 99px; margin-bottom: 36px; }
@@ -123,13 +99,9 @@
     .prem-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
     .prem-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
     .prem-desc { font-size: 12px; color: var(--muted); line-height: 1.45; }
-
-    /* CTA */
     .cta-section { text-align: center; padding: 72px 24px; }
     .cta-section h2 { margin-bottom: 14px; }
     .cta-sub { color: var(--muted); margin: 0 auto 36px; max-width: 380px; font-size: 15px; }
-
-    /* FOOTER */
     footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
     .footer-inner { max-width: 1080px; margin: 0 auto; }
     .footer-brand { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 14px; }
@@ -139,7 +111,6 @@
     .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; }
     .footer-links a:hover { color: var(--text); }
     .footer-copy { font-size: 12px; color: var(--muted); }
-
     @media (max-width: 600px) {
       .stat-item { padding: 18px 20px; flex: 1 1 45%; }
       nav { padding: 12px 16px; }
@@ -153,86 +124,99 @@
       <img src="icon.png" alt="RiderStats" class="nav-icon" />
       <span class="nav-logo">RiderStats</span>
     </a>
-    <a href="privacy.html" class="nav-link">Privacidad</a>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <a href="privacy.html" class="nav-link" data-i18n="navPrivacy">Privacidad</a>
+      <div class="lang-switcher">
+        <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">🌐 <span id="langCurrent">ES</span> ▾</button>
+        <div class="lang-dropdown" id="langDropdown">
+          <div onclick="setLang('es')">🇪🇸 Español</div>
+          <div onclick="setLang('en')">🇬🇧 English</div>
+          <div onclick="setLang('fr')">🇫🇷 Français</div>
+          <div onclick="setLang('pt')">🇵🇹 Português</div>
+          <div onclick="setLang('de')">🇩🇪 Deutsch</div>
+          <div onclick="setLang('it')">🇮🇹 Italiano</div>
+          <div onclick="setLang('ro')">🇷🇴 Română</div>
+        </div>
+      </div>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="badge">📱 Para todos — riders, transportistas, taxistas y cualquier autónomo</div>
+    <div class="badge" data-i18n="badge">📱 Para todos — riders, transportistas, taxistas y cualquier autónomo</div>
     <img src="icon.png" alt="RiderStats" class="hero-icon" />
-    <h1>Tu dinero,<br/><span>bajo control</span></h1>
-    <p class="hero-sub">Da igual si repartes pedidos, conduces un taxi, haces transportes o simplemente quieres controlar tus ingresos y gastos del día a día. RiderStats es para ti.</p>
+    <h1 data-i18n-html="heroTitle">Tu dinero,<br/><span>bajo control</span></h1>
+    <p class="hero-sub" data-i18n="heroSub">Da igual si repartes pedidos, conduces un taxi, haces transportes o simplemente quieres controlar tus ingresos y gastos del día a día. RiderStats es para ti.</p>
     <div class="hero-ctas">
       <div class="btn-soon">
         <span class="btn-soon-icon">🚀</span>
         <div class="btn-soon-texts">
-          <div class="btn-soon-label">Próximamente en</div>
+          <div class="btn-soon-label" data-i18n="btnSoonLabel">Próximamente en</div>
           <div class="btn-soon-store">Google Play</div>
         </div>
-        <span class="btn-soon-chip">Pronto</span>
+        <span class="btn-soon-chip" data-i18n="btnChip1">Pronto</span>
       </div>
-      <a href="#funciones" class="btn-secondary">Ver funciones ↓</a>
+      <a href="#funciones" class="btn-secondary" data-i18n="btnSecondary">Ver funciones ↓</a>
     </div>
   </section>
 
   <!-- STATS BAND -->
   <div class="stats-band">
-    <div class="stat-item"><div class="stat-num">+60</div><div class="stat-label">Plataformas compatibles</div></div>
-    <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Idiomas</div></div>
-    <div class="stat-item"><div class="stat-num">PDF+CSV</div><div class="stat-label">Informes fiscales</div></div>
-    <div class="stat-item"><div class="stat-num">🏆</div><div class="stat-label">Ranking global</div></div>
+    <div class="stat-item"><div class="stat-num">+60</div><div class="stat-label" data-i18n="stat1">Plataformas compatibles</div></div>
+    <div class="stat-item"><div class="stat-num">7</div><div class="stat-label" data-i18n="stat2">Idiomas</div></div>
+    <div class="stat-item"><div class="stat-num">PDF+CSV</div><div class="stat-label" data-i18n="stat3">Informes fiscales</div></div>
+    <div class="stat-item"><div class="stat-num">🏆</div><div class="stat-label" data-i18n="stat4">Ranking global</div></div>
     <div class="stat-item">
       <div class="rc-coin">RC</div>
-      <div class="stat-label">RiderCoins gratis</div>
+      <div class="stat-label" data-i18n="stat5">RiderCoins gratis</div>
     </div>
-    <div class="stat-item"><div class="stat-num">Gratis</div><div class="stat-label">Para empezar</div></div>
+    <div class="stat-item"><div class="stat-num" data-i18n="stat6num">Gratis</div><div class="stat-label" data-i18n="stat6">Para empezar</div></div>
   </div>
 
   <!-- FEATURES -->
   <section id="funciones">
-    <div class="section-label">Funciones</div>
-    <h2>Todo lo que necesitas,<br/>seas quien seas</h2>
-    <p class="section-sub">Diseñado para riders de reparto, pero igual de útil para taxistas, transportistas, autónomos y cualquiera que quiera llevar sus cuentas al día.</p>
+    <div class="section-label" data-i18n="featLabel">Funciones</div>
+    <h2 data-i18n-html="featTitle">Todo lo que necesitas,<br/>seas quien seas</h2>
+    <p class="section-sub" data-i18n="featSub">Diseñado para riders de reparto, pero igual de útil para taxistas, transportistas, autónomos y cualquiera que quiera llevar sus cuentas al día.</p>
     <div class="features-grid">
-      <div class="feature-card"><div class="feature-icon">💰</div><div class="feature-title">Registro de ingresos</div><div class="feature-desc">Añade pagos con propina, plataforma y concepto. Separa trabajo personal del laboral con un toque.</div></div>
-      <div class="feature-card"><div class="feature-icon">📉</div><div class="feature-title">Control de gastos</div><div class="feature-desc">Gasolina, mantenimiento, seguro, multas… categorizado y excluido automáticamente del neto laboral.</div></div>
-      <div class="feature-card"><div class="feature-icon">📊</div><div class="feature-title">Dashboard en tiempo real</div><div class="feature-desc">Neto mensual actualizado al instante. Ingresos + propinas − gastos del mes de un vistazo.</div></div>
-      <div class="feature-card"><div class="feature-icon">📄</div><div class="feature-title">Exporta PDF y CSV</div><div class="feature-desc">Genera informes profesionales para Hacienda o tu propio archivo.</div></div>
-      <div class="feature-card"><div class="feature-icon">🛣️</div><div class="feature-title">Registro GPS de rutas</div><div class="feature-desc">Registra los km de cada turno. Gana 1 RiderCoin por cada 5 km a velocidad de reparto.</div></div>
-      <div class="feature-card"><div class="feature-icon">🏆</div><div class="feature-title">Ranking global</div><div class="feature-desc">Compite con riders de todo el mundo en el ranking semanal. Gana RiderCoins y recompensas.</div></div>
-      <div class="feature-card"><div class="feature-icon">⚔️</div><div class="feature-title">Duelos entre riders</div><div class="feature-desc">Reta a un amigo a ver quién factura más en 24h. El ganador se lleva RiderCoins.</div></div>
-      <div class="feature-card"><div class="feature-icon">🔥</div><div class="feature-title">Racha de registros</div><div class="feature-desc">Registra cada día para mantener tu racha. Multiplica los premios de la ruleta y desbloquea recompensas.</div></div>
-      <div class="feature-card"><div class="feature-icon">💬</div><div class="feature-title">Mensajes y grupos</div><div class="feature-desc">Chatea con compañeros, crea grupos de riders y comparte fotos, audios y documentos.</div></div>
-      <div class="feature-card"><div class="feature-icon">📋</div><div class="feature-title">Foro de riders</div><div class="feature-desc">Debate en el foro por categorías. Consejos de ruta, plataformas, mecánica, fiscalidad y más.</div></div>
-      <div class="feature-card"><div class="feature-icon">🎰</div><div class="feature-title">Ruleta diaria</div><div class="feature-desc">Gira cada día para ganar RiderCoins y premios especiales. Tu racha multiplica los premios.</div></div>
-      <div class="feature-card"><div class="feature-icon">🔔</div><div class="feature-title">Recordatorio de mantenimiento</div><div class="feature-desc">Configura alertas para el próximo servicio de tu vehículo. Sin sorpresas en ruta.</div></div>
+      <div class="feature-card"><div class="feature-icon">💰</div><div class="feature-title" data-i18n="f1t">Registro de ingresos</div><div class="feature-desc" data-i18n="f1d">Añade pagos con propina, plataforma y concepto. Separa trabajo personal del laboral con un toque.</div></div>
+      <div class="feature-card"><div class="feature-icon">📉</div><div class="feature-title" data-i18n="f2t">Control de gastos</div><div class="feature-desc" data-i18n="f2d">Gasolina, mantenimiento, seguro, multas… categorizado y excluido automáticamente del neto laboral.</div></div>
+      <div class="feature-card"><div class="feature-icon">📊</div><div class="feature-title" data-i18n="f3t">Dashboard en tiempo real</div><div class="feature-desc" data-i18n="f3d">Neto mensual actualizado al instante. Ingresos + propinas − gastos del mes de un vistazo.</div></div>
+      <div class="feature-card"><div class="feature-icon">📄</div><div class="feature-title" data-i18n="f4t">Exporta PDF y CSV</div><div class="feature-desc" data-i18n="f4d">Genera informes profesionales para Hacienda o tu propio archivo.</div></div>
+      <div class="feature-card"><div class="feature-icon">🛣️</div><div class="feature-title" data-i18n="f5t">Registro GPS de rutas</div><div class="feature-desc" data-i18n="f5d">Registra los km de cada turno. Gana 1 RiderCoin por cada 5 km a velocidad de reparto.</div></div>
+      <div class="feature-card"><div class="feature-icon">🏆</div><div class="feature-title" data-i18n="f6t">Ranking global</div><div class="feature-desc" data-i18n="f6d">Compite con riders de todo el mundo en el ranking semanal. Gana RiderCoins y recompensas.</div></div>
+      <div class="feature-card"><div class="feature-icon">⚔️</div><div class="feature-title" data-i18n="f7t">Duelos entre riders</div><div class="feature-desc" data-i18n="f7d">Reta a un amigo a ver quién factura más en 24h. El ganador se lleva RiderCoins.</div></div>
+      <div class="feature-card"><div class="feature-icon">🔥</div><div class="feature-title" data-i18n="f8t">Racha de registros</div><div class="feature-desc" data-i18n="f8d">Registra cada día para mantener tu racha. Multiplica los premios de la ruleta y desbloquea recompensas.</div></div>
+      <div class="feature-card"><div class="feature-icon">💬</div><div class="feature-title" data-i18n="f9t">Mensajes y grupos</div><div class="feature-desc" data-i18n="f9d">Chatea con compañeros, crea grupos de riders y comparte fotos, audios y documentos.</div></div>
+      <div class="feature-card"><div class="feature-icon">📋</div><div class="feature-title" data-i18n="f10t">Foro de riders</div><div class="feature-desc" data-i18n="f10d">Debate en el foro por categorías. Consejos de ruta, plataformas, mecánica, fiscalidad y más.</div></div>
+      <div class="feature-card"><div class="feature-icon">🎰</div><div class="feature-title" data-i18n="f11t">Ruleta diaria</div><div class="feature-desc" data-i18n="f11d">Gira cada día para ganar RiderCoins y premios especiales. Tu racha multiplica los premios.</div></div>
+      <div class="feature-card"><div class="feature-icon">🔔</div><div class="feature-title" data-i18n="f12t">Recordatorio de mantenimiento</div><div class="feature-desc" data-i18n="f12d">Configura alertas para el próximo servicio de tu vehículo. Sin sorpresas en ruta.</div></div>
     </div>
   </section>
 
   <!-- FOR EVERYONE -->
   <section style="text-align:center; padding: 60px 24px;">
-    <div class="section-label">Para todos</div>
-    <h2>No hace falta ser repartidor</h2>
-    <p style="color:var(--muted);max-width:580px;margin:14px auto 40px;font-size:16px;">RiderStats nació en el mundo del reparto, pero sus herramientas sirven para cualquier persona que quiera controlar sus ingresos y gastos.</p>
+    <div class="section-label" data-i18n="forLabel">Para todos</div>
+    <h2 data-i18n="forTitle">No hace falta ser repartidor</h2>
+    <p style="color:var(--muted);max-width:580px;margin:14px auto 40px;font-size:16px;" data-i18n="forSub">RiderStats nació en el mundo del reparto, pero sus herramientas sirven para cualquier persona que quiera controlar sus ingresos y gastos.</p>
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;max-width:820px;margin:0 auto;">
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;width:180px;text-align:center;"><div style="font-size:32px;margin-bottom:10px;">🛵</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;">Rider de reparto</div><div style="font-size:12px;color:var(--muted);">Uber Eats, Glovo, Amazon…</div></div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;width:180px;text-align:center;"><div style="font-size:32px;margin-bottom:10px;">🚕</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;">Taxista / VTC</div><div style="font-size:12px;color:var(--muted);">Bolt, Uber, Cabify…</div></div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;width:180px;text-align:center;"><div style="font-size:32px;margin-bottom:10px;">🚛</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;">Transportista</div><div style="font-size:12px;color:var(--muted);">Rutas, portes, logística</div></div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;width:180px;text-align:center;"><div style="font-size:32px;margin-bottom:10px;">👷</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;">Autónomo</div><div style="font-size:12px;color:var(--muted);">Cualquier actividad</div></div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;width:180px;text-align:center;"><div style="font-size:32px;margin-bottom:10px;">👤</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;">Usuario particular</div><div style="font-size:12px;color:var(--muted);">Controla tu economía diaria</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;width:180px;text-align:center;"><div style="font-size:32px;margin-bottom:10px;">🛵</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;" data-i18n="pro1t">Rider de reparto</div><div style="font-size:12px;color:var(--muted);" data-i18n="pro1s">Uber Eats, Glovo, Amazon…</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;width:180px;text-align:center;"><div style="font-size:32px;margin-bottom:10px;">🚕</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;" data-i18n="pro2t">Taxista / VTC</div><div style="font-size:12px;color:var(--muted);" data-i18n="pro2s">Bolt, Uber, Cabify…</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;width:180px;text-align:center;"><div style="font-size:32px;margin-bottom:10px;">🚛</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;" data-i18n="pro3t">Transportista</div><div style="font-size:12px;color:var(--muted);" data-i18n="pro3s">Rutas, portes, logística</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;width:180px;text-align:center;"><div style="font-size:32px;margin-bottom:10px;">👷</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;" data-i18n="pro4t">Autónomo</div><div style="font-size:12px;color:var(--muted);" data-i18n="pro4s">Cualquier actividad</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;width:180px;text-align:center;"><div style="font-size:32px;margin-bottom:10px;">👤</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;" data-i18n="pro5t">Usuario particular</div><div style="font-size:12px;color:var(--muted);" data-i18n="pro5s">Controla tu economía diaria</div></div>
     </div>
   </section>
 
   <!-- PLATFORMS -->
   <section>
-    <div class="section-label">Plataformas</div>
-    <h2>Compatible con +60 plataformas<br/>en todo el mundo</h2>
-    <p class="section-sub">Reparto de comida, transporte VTC, logística, uso personal o autónomo. ¿No está la tuya? Usa «Otro» para cualquier concepto.</p>
+    <div class="section-label" data-i18n="platLabel">Plataformas</div>
+    <h2 data-i18n-html="platTitle">Compatible con +60 plataformas<br/>en todo el mundo</h2>
+    <p class="section-sub" data-i18n="platSub">Reparto de comida, transporte VTC, logística, uso personal o autónomo. ¿No está la tuya? Usa «Otro» para cualquier concepto.</p>
 
     <div style="max-width:820px;margin:0 auto;">
-
       <div style="margin-bottom:28px;">
-        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#F97316;margin-bottom:14px;">🍕 Reparto de comida</div>
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#F97316;margin-bottom:14px;" data-i18n="platCat1">🍕 Reparto de comida</div>
         <div class="platforms-grid">
           <span class="platform-pill"><span style="color:#FF6B35">●</span> Uber Eats</span>
           <span class="platform-pill"><span style="color:#A855F7">●</span> Glovo</span>
@@ -245,12 +229,11 @@
           <span class="platform-pill"><span style="color:#10B981">●</span> PedidosYa</span>
           <span class="platform-pill"><span style="color:#EF4444">●</span> DoorDash</span>
           <span class="platform-pill"><span style="color:#14B8A6">●</span> Getir</span>
-          <span class="platform-pill"><span style="color:#8888AA">●</span> +17 más…</span>
+          <span class="platform-pill"><span style="color:#8888AA">●</span> <span data-i18n="platMore1">+17 más…</span></span>
         </div>
       </div>
-
       <div style="margin-bottom:28px;">
-        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#3B82F6;margin-bottom:14px;">🚕 Transporte / VTC</div>
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#3B82F6;margin-bottom:14px;" data-i18n="platCat2">🚕 Transporte / VTC</div>
         <div class="platforms-grid">
           <span class="platform-pill"><span style="color:#1D4ED8">●</span> Uber</span>
           <span class="platform-pill"><span style="color:#22C55E">●</span> Cabify</span>
@@ -260,12 +243,11 @@
           <span class="platform-pill"><span style="color:#EC4899">●</span> Lyft</span>
           <span class="platform-pill"><span style="color:#A855F7">●</span> Freenow</span>
           <span class="platform-pill"><span style="color:#EAB308">●</span> Heetch</span>
-          <span class="platform-pill"><span style="color:#8888AA">●</span> +5 más…</span>
+          <span class="platform-pill"><span style="color:#8888AA">●</span> <span data-i18n="platMore2">+5 más…</span></span>
         </div>
       </div>
-
       <div style="margin-bottom:28px;">
-        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#10B981;margin-bottom:14px;">📦 Logística y paquetería</div>
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#10B981;margin-bottom:14px;" data-i18n="platCat3">📦 Logística y paquetería</div>
         <div class="platforms-grid">
           <span class="platform-pill"><span style="color:#3B82F6">●</span> Amazon Flex</span>
           <span class="platform-pill"><span style="color:#EAB308">●</span> SEUR</span>
@@ -277,129 +259,100 @@
           <span class="platform-pill"><span style="color:#8B5CF6">●</span> FedEx</span>
           <span class="platform-pill"><span style="color:#06B6D4">●</span> UPS</span>
           <span class="platform-pill"><span style="color:#10B981">●</span> DPD</span>
-          <span class="platform-pill"><span style="color:#8888AA">●</span> +6 más…</span>
+          <span class="platform-pill"><span style="color:#8888AA">●</span> <span data-i18n="platMore3">+6 más…</span></span>
         </div>
       </div>
-
       <div>
-        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#8B5CF6;margin-bottom:14px;">👤 Uso personal y autónomo</div>
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#8B5CF6;margin-bottom:14px;" data-i18n="platCat4">👤 Uso personal y autónomo</div>
         <div class="platforms-grid">
-          <span class="platform-pill"><span style="color:#8B5CF6">●</span> Salario Mensual Fijo</span>
-          <span class="platform-pill"><span style="color:#10B981">●</span> Reparto Privado</span>
-          <span class="platform-pill"><span style="color:#8888AA">●</span> Otro / Personalizado</span>
+          <span class="platform-pill"><span style="color:#8B5CF6">●</span> <span data-i18n="platFixed">Salario Mensual Fijo</span></span>
+          <span class="platform-pill"><span style="color:#10B981">●</span> <span data-i18n="platPrivate">Reparto Privado</span></span>
+          <span class="platform-pill"><span style="color:#8888AA">●</span> <span data-i18n="platOther">Otro / Personalizado</span></span>
         </div>
       </div>
-
     </div>
   </section>
 
   <!-- PREMIUM -->
   <div class="premium-section">
     <div class="premium-inner">
-      <div class="section-label">Premium</div>
-      <h2>Desbloquea todo</h2>
-      <p class="section-sub">Sin límites. Sin anuncios. Con todas las herramientas que un rider serio necesita.</p>
-      <div class="prem-price">Solo 4,99 €/mes</div>
-
+      <div class="section-label" data-i18n="premLabel">Premium</div>
+      <h2 data-i18n="premTitle">Desbloquea todo</h2>
+      <p class="section-sub" data-i18n="premSub">Sin límites. Sin anuncios. Con todas las herramientas que un rider serio necesita.</p>
+      <div class="prem-price" data-i18n="premPrice">Solo 4,99 €/mes</div>
       <div class="premium-cats">
-
         <div>
-          <div class="prem-cat-title">💰 Registro y exportación</div>
+          <div class="prem-cat-title" data-i18n="pc1">💰 Registro y exportación</div>
           <div class="prem-cat-grid">
-            <div class="premium-item"><span class="prem-icon">♾️</span><div><div class="prem-title">Registros ilimitados</div><div class="prem-desc">Sin tope de anotaciones mensuales. Registra todo lo que necesites.</div></div></div>
-            <div class="premium-item"><span class="prem-icon">📄</span><div><div class="prem-title">Exportación instantánea PDF</div><div class="prem-desc">Descarga tu informe al instante, sin ver vídeos ni esperar.</div></div></div>
-            <div class="premium-item"><span class="prem-icon">📊</span><div><div class="prem-title">Exportación a Excel (CSV)</div><div class="prem-desc">Exporta todos tus datos en formato Excel con un solo toque.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">♾️</span><div><div class="prem-title" data-i18n="p1_1t">Registros ilimitados</div><div class="prem-desc" data-i18n="p1_1d">Sin tope de anotaciones mensuales. Registra todo lo que necesites.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">📄</span><div><div class="prem-title" data-i18n="p1_2t">Exportación instantánea PDF</div><div class="prem-desc" data-i18n="p1_2d">Descarga tu informe al instante, sin ver vídeos ni esperar.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">📊</span><div><div class="prem-title" data-i18n="p1_3t">Exportación a Excel (CSV)</div><div class="prem-desc" data-i18n="p1_3d">Exporta todos tus datos en formato Excel con un solo toque.</div></div></div>
           </div>
         </div>
-
         <div>
-          <div class="prem-cat-title">📈 Estadísticas avanzadas</div>
+          <div class="prem-cat-title" data-i18n="pc2">📈 Estadísticas avanzadas</div>
           <div class="prem-cat-grid">
-            <div class="premium-item"><span class="prem-icon">📉</span><div><div class="prem-title">Gráficos avanzados</div><div class="prem-desc">Proyecciones, análisis de gastos y filtros por mes, trimestre, año e historial completo.</div></div></div>
-            <div class="premium-item"><span class="prem-icon">🏅</span><div><div class="prem-title">Ingresos por plataforma</div><div class="prem-desc">Gráfico detallado de cuánto ganas con cada app. Descubre cuál te paga mejor.</div></div></div>
-            <div class="premium-item"><span class="prem-icon">🎯</span><div><div class="prem-title">Análisis de Estrategia</div><div class="prem-desc">Descubre en qué plataforma, franja horaria y día ganas más. Insights automáticos.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">📉</span><div><div class="prem-title" data-i18n="p2_1t">Gráficos avanzados</div><div class="prem-desc" data-i18n="p2_1d">Proyecciones, análisis de gastos y filtros por mes, trimestre, año e historial completo.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">🏅</span><div><div class="prem-title" data-i18n="p2_2t">Ingresos por plataforma</div><div class="prem-desc" data-i18n="p2_2d">Gráfico detallado de cuánto ganas con cada app. Descubre cuál te paga mejor.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">🎯</span><div><div class="prem-title" data-i18n="p2_3t">Análisis de Estrategia</div><div class="prem-desc" data-i18n="p2_3d">Descubre en qué plataforma, franja horaria y día ganas más. Insights automáticos.</div></div></div>
           </div>
         </div>
-
         <div>
-          <div class="prem-cat-title">🛣️ GPS y rutas</div>
+          <div class="prem-cat-title" data-i18n="pc3">🛣️ GPS y rutas</div>
           <div class="prem-cat-grid">
-            <div class="premium-item"><span class="prem-icon">⚡</span><div><div class="prem-title">+25 RiderCoins/día en rutas</div><div class="prem-desc">Los riders gratuitos ganan hasta 15 RC/día. Premium sube el tope a 25.</div></div></div>
-            <div class="premium-item"><span class="prem-icon">🗂️</span><div><div class="prem-title">Historial GPS de 30 días</div><div class="prem-desc">Consulta y analiza tus rutas del último mes. Gratuitos solo ven 7 días.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">⚡</span><div><div class="prem-title" data-i18n="p3_1t">+25 RiderCoins/día en rutas</div><div class="prem-desc" data-i18n="p3_1d">Los riders gratuitos ganan hasta 15 RC/día. Premium sube el tope a 25.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">🗂️</span><div><div class="prem-title" data-i18n="p3_2t">Historial GPS de 30 días</div><div class="prem-desc" data-i18n="p3_2d">Consulta y analiza tus rutas del último mes. Gratuitos solo ven 7 días.</div></div></div>
           </div>
         </div>
-
         <div>
-          <div class="prem-cat-title">💬 Social sin límites</div>
+          <div class="prem-cat-title" data-i18n="pc4">💬 Social sin límites</div>
           <div class="prem-cat-grid">
-            <div class="premium-item"><span class="prem-icon">👥</span><div><div class="prem-title">Amigos ilimitados</div><div class="prem-desc">Sin límite de amigos. Los riders gratuitos tienen un tope de 20.</div></div></div>
-            <div class="premium-item"><span class="prem-icon">📸</span><div><div class="prem-title">Fotos, audios y documentos</div><div class="prem-desc">Envía multimedia en chats. Los gratuitos solo pueden enviar texto.</div></div></div>
-            <div class="premium-item"><span class="prem-icon">📜</span><div><div class="prem-title">Historial completo de mensajes</div><div class="prem-desc">Hasta 500 mensajes sin límite de tiempo. Gratuitos: 100 mensajes / 30 días.</div></div></div>
-            <div class="premium-item"><span class="prem-icon">✍️</span><div><div class="prem-title">Mensajes más largos</div><div class="prem-desc">Hasta 1.000 caracteres por mensaje. Gratuitos: 300 caracteres.</div></div></div>
-            <div class="premium-item"><span class="prem-icon">👑</span><div><div class="prem-title">Crea grupos de riders</div><div class="prem-desc">Solo Premium puede crear grupos. Los gratuitos pueden unirse pero no crearlos.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">👥</span><div><div class="prem-title" data-i18n="p4_1t">Amigos ilimitados</div><div class="prem-desc" data-i18n="p4_1d">Sin límite de amigos. Los riders gratuitos tienen un tope de 20.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">📸</span><div><div class="prem-title" data-i18n="p4_2t">Fotos, audios y documentos</div><div class="prem-desc" data-i18n="p4_2d">Envía multimedia en chats. Los gratuitos solo pueden enviar texto.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">📜</span><div><div class="prem-title" data-i18n="p4_3t">Historial completo de mensajes</div><div class="prem-desc" data-i18n="p4_3d">Hasta 500 mensajes sin límite de tiempo. Gratuitos: 100 mensajes / 30 días.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">✍️</span><div><div class="prem-title" data-i18n="p4_4t">Mensajes más largos</div><div class="prem-desc" data-i18n="p4_4d">Hasta 1.000 caracteres por mensaje. Gratuitos: 300 caracteres.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">👑</span><div><div class="prem-title" data-i18n="p4_5t">Crea grupos de riders</div><div class="prem-desc" data-i18n="p4_5d">Solo Premium puede crear grupos. Los gratuitos pueden unirse pero no crearlos.</div></div></div>
           </div>
         </div>
-
         <div>
-          <div class="prem-cat-title">🎁 Extras</div>
+          <div class="prem-cat-title" data-i18n="pc5">🎁 Extras</div>
           <div class="prem-cat-grid">
-            <div class="premium-item"><span class="prem-icon">🚫</span><div><div class="prem-title">Sin anuncios</div><div class="prem-desc">Experiencia limpia, sin banners ni intersticiales.</div></div></div>
-            <div class="premium-item"><span class="prem-icon">☁️</span><div><div class="prem-title">Backup en la nube</div><div class="prem-desc">Tus datos sincronizados automáticamente. Cambia de móvil sin perder nada.</div></div></div>
-            <div class="premium-item"><span class="prem-icon">🎰</span><div><div class="prem-title">10 giros en la ruleta diaria</div><div class="prem-desc">El doble de oportunidades de ganar RiderCoins. Gratuitos: 5 giros/día.</div></div></div>
-            <div class="premium-item"><span class="prem-icon">🤖</span><div><div class="prem-title">Consejos IA semanales</div><div class="prem-desc">Cada domingo, la IA analiza tu semana y te envía un consejo personalizado para ganar más.</div></div></div>
-            <div class="premium-item"><span class="prem-icon">⭐</span><div><div class="prem-title">Soporte prioritario</div><div class="prem-desc">Tu consulta llega antes. Atención preferente del equipo de RiderStats.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">🚫</span><div><div class="prem-title" data-i18n="p5_1t">Sin anuncios</div><div class="prem-desc" data-i18n="p5_1d">Experiencia limpia, sin banners ni intersticiales.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">☁️</span><div><div class="prem-title" data-i18n="p5_2t">Backup en la nube</div><div class="prem-desc" data-i18n="p5_2d">Tus datos sincronizados automáticamente. Cambia de móvil sin perder nada.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">🎰</span><div><div class="prem-title" data-i18n="p5_3t">10 giros en la ruleta diaria</div><div class="prem-desc" data-i18n="p5_3d">El doble de oportunidades de ganar RiderCoins. Gratuitos: 5 giros/día.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">🤖</span><div><div class="prem-title" data-i18n="p5_4t">Consejos IA semanales</div><div class="prem-desc" data-i18n="p5_4d">Cada domingo, la IA analiza tu semana y te envía un consejo personalizado para ganar más.</div></div></div>
+            <div class="premium-item"><span class="prem-icon">⭐</span><div><div class="prem-title" data-i18n="p5_5t">Soporte prioritario</div><div class="prem-desc" data-i18n="p5_5d">Tu consulta llega antes. Atención preferente del equipo de RiderStats.</div></div></div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 
   <!-- RIDERCOINS -->
   <section style="text-align:center; padding: 60px 24px;">
-    <div class="section-label">RiderCoins</div>
-    <h2>Gana monedas<br/>mientras trabajas</h2>
-    <p style="color:var(--muted);max-width:540px;margin:14px auto 40px;font-size:16px;">RiderStats tiene su propio sistema de monedas. Gana RiderCoins por registrar tus jornadas, completar rutas GPS, mantener tu racha diaria o ganar duelos. Canjéalos en la tienda de la app.</p>
+    <div class="section-label" data-i18n="rcLabel">RiderCoins</div>
+    <h2 data-i18n-html="rcTitle">Gana monedas<br/>mientras trabajas</h2>
+    <p style="color:var(--muted);max-width:540px;margin:14px auto 40px;font-size:16px;" data-i18n="rcSub">RiderStats tiene su propio sistema de monedas. Gana RiderCoins por registrar tus jornadas, completar rutas GPS, mantener tu racha diaria o ganar duelos. Canjéalos en la tienda de la app.</p>
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;max-width:860px;margin:0 auto;">
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;min-width:200px;text-align:center;">
-        <div style="font-size:30px;margin-bottom:10px;">✍️</div>
-        <div style="font-weight:700;font-size:14px;margin-bottom:4px;">Registra ingresos y gastos</div>
-        <div style="font-size:12px;color:var(--muted);">Gana monedas por cada anotación que haces</div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;min-width:200px;text-align:center;">
-        <div style="font-size:30px;margin-bottom:10px;">🛣️</div>
-        <div style="font-weight:700;font-size:14px;margin-bottom:4px;">Recorre km con el GPS</div>
-        <div style="font-size:12px;color:var(--muted);">1 RiderCoin por cada 5 km a velocidad de reparto</div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;min-width:200px;text-align:center;">
-        <div style="font-size:30px;margin-bottom:10px;">🔥</div>
-        <div style="font-weight:700;font-size:14px;margin-bottom:4px;">Mantén tu racha diaria</div>
-        <div style="font-size:12px;color:var(--muted);">Cuantos más días seguidos, mayor multiplicador de premios</div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;min-width:200px;text-align:center;">
-        <div style="font-size:30px;margin-bottom:10px;">⚔️</div>
-        <div style="font-weight:700;font-size:14px;margin-bottom:4px;">Gana duelos</div>
-        <div style="font-size:12px;color:var(--muted);">Reta a un amigo y el ganador se lleva las monedas</div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;min-width:200px;text-align:center;">
-        <div style="font-size:30px;margin-bottom:10px;">🎰</div>
-        <div style="font-weight:700;font-size:14px;margin-bottom:4px;">Ruleta diaria</div>
-        <div style="font-size:12px;color:var(--muted);">Gira cada día y gana premios. Premium: 10 giros, gratuito: 5</div>
-      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;min-width:200px;text-align:center;"><div style="font-size:30px;margin-bottom:10px;">✍️</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;" data-i18n="rc1t">Registra ingresos y gastos</div><div style="font-size:12px;color:var(--muted);" data-i18n="rc1d">Gana monedas por cada anotación que haces</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;min-width:200px;text-align:center;"><div style="font-size:30px;margin-bottom:10px;">🛣️</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;" data-i18n="rc2t">Recorre km con el GPS</div><div style="font-size:12px;color:var(--muted);" data-i18n="rc2d">1 RiderCoin por cada 5 km a velocidad de reparto</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;min-width:200px;text-align:center;"><div style="font-size:30px;margin-bottom:10px;">🔥</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;" data-i18n="rc3t">Mantén tu racha diaria</div><div style="font-size:12px;color:var(--muted);" data-i18n="rc3d">Cuantos más días seguidos, mayor multiplicador de premios</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;min-width:200px;text-align:center;"><div style="font-size:30px;margin-bottom:10px;">⚔️</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;" data-i18n="rc4t">Gana duelos</div><div style="font-size:12px;color:var(--muted);" data-i18n="rc4d">Reta a un amigo y el ganador se lleva las monedas</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 20px;min-width:200px;text-align:center;"><div style="font-size:30px;margin-bottom:10px;">🎰</div><div style="font-weight:700;font-size:14px;margin-bottom:4px;" data-i18n="rc5t">Ruleta diaria</div><div style="font-size:12px;color:var(--muted);" data-i18n="rc5d">Gira cada día y gana premios. Premium: 10 giros, gratuito: 5</div></div>
     </div>
   </section>
 
   <!-- CTA FINAL -->
   <div class="cta-section">
-    <h2>🚀 El lanzamiento se acerca</h2>
-    <p class="cta-sub">RiderStats llegará próximamente a Google Play. ¡Sigue la cuenta para no perderte el lanzamiento!</p>
+    <h2 data-i18n="ctaTitle">🚀 El lanzamiento se acerca</h2>
+    <p class="cta-sub" data-i18n="ctaSub">RiderStats llegará próximamente a Google Play. ¡Sigue la cuenta para no perderte el lanzamiento!</p>
     <div class="btn-soon" style="display:inline-flex;">
       <span class="btn-soon-icon">🏁</span>
       <div class="btn-soon-texts">
-        <div class="btn-soon-label">Disponible muy pronto en</div>
+        <div class="btn-soon-label" data-i18n="ctaBtnLabel">Disponible muy pronto en</div>
         <div class="btn-soon-store">Google Play</div>
       </div>
-      <span class="btn-soon-chip">Próximamente</span>
+      <span class="btn-soon-chip" data-i18n="ctaBtnChip">Próximamente</span>
     </div>
   </div>
 
@@ -410,12 +363,315 @@
         <span class="footer-logo">RiderStats</span>
       </div>
       <div class="footer-links">
-        <a href="privacy.html">Política de privacidad</a>
-        <a href="mailto:riderstats@gmail.com">Contacto</a>
+        <a href="privacy.html" data-i18n="footerPrivacy">Política de privacidad</a>
+        <a href="mailto:riderstats@gmail.com" data-i18n="footerContact">Contacto</a>
       </div>
-      <div class="footer-copy">© 2026 RiderStats · Desarrollado por <strong>18Systems</strong> · Todos los derechos reservados.</div>
+      <div class="footer-copy" data-i18n-html="footerCopy">© 2026 RiderStats · Desarrollado por <strong>18Systems</strong> · Todos los derechos reservados.</div>
     </div>
   </footer>
 
+  <script>
+  const T = {
+    es: {
+      pageTitle:"RiderStats — App para riders y repartidores",
+      navPrivacy:"Privacidad",
+      badge:"📱 Para todos — riders, transportistas, taxistas y cualquier autónomo",
+      heroTitle:"Tu dinero,<br/><span>bajo control</span>",
+      heroSub:"Da igual si repartes pedidos, conduces un taxi, haces transportes o simplemente quieres controlar tus ingresos y gastos del día a día. RiderStats es para ti.",
+      btnSoonLabel:"Próximamente en",btnChip1:"Pronto",btnSecondary:"Ver funciones ↓",
+      stat1:"Plataformas compatibles",stat2:"Idiomas",stat3:"Informes fiscales",stat4:"Ranking global",stat5:"RiderCoins gratis",stat6num:"Gratis",stat6:"Para empezar",
+      featLabel:"Funciones",featTitle:"Todo lo que necesitas,<br/>seas quien seas",featSub:"Diseñado para riders de reparto, pero igual de útil para taxistas, transportistas, autónomos y cualquiera que quiera llevar sus cuentas al día.",
+      f1t:"Registro de ingresos",f1d:"Añade pagos con propina, plataforma y concepto. Separa trabajo personal del laboral con un toque.",
+      f2t:"Control de gastos",f2d:"Gasolina, mantenimiento, seguro, multas… categorizado y excluido automáticamente del neto laboral.",
+      f3t:"Dashboard en tiempo real",f3d:"Neto mensual actualizado al instante. Ingresos + propinas − gastos del mes de un vistazo.",
+      f4t:"Exporta PDF y CSV",f4d:"Genera informes profesionales para Hacienda o tu propio archivo.",
+      f5t:"Registro GPS de rutas",f5d:"Registra los km de cada turno. Gana 1 RiderCoin por cada 5 km a velocidad de reparto.",
+      f6t:"Ranking global",f6d:"Compite con riders de todo el mundo en el ranking semanal. Gana RiderCoins y recompensas.",
+      f7t:"Duelos entre riders",f7d:"Reta a un amigo a ver quién factura más en 24h. El ganador se lleva RiderCoins.",
+      f8t:"Racha de registros",f8d:"Registra cada día para mantener tu racha. Multiplica los premios de la ruleta y desbloquea recompensas.",
+      f9t:"Mensajes y grupos",f9d:"Chatea con compañeros, crea grupos de riders y comparte fotos, audios y documentos.",
+      f10t:"Foro de riders",f10d:"Debate en el foro por categorías. Consejos de ruta, plataformas, mecánica, fiscalidad y más.",
+      f11t:"Ruleta diaria",f11d:"Gira cada día para ganar RiderCoins y premios especiales. Tu racha multiplica los premios.",
+      f12t:"Recordatorio de mantenimiento",f12d:"Configura alertas para el próximo servicio de tu vehículo. Sin sorpresas en ruta.",
+      forLabel:"Para todos",forTitle:"No hace falta ser repartidor",forSub:"RiderStats nació en el mundo del reparto, pero sus herramientas sirven para cualquier persona que quiera controlar sus ingresos y gastos.",
+      pro1t:"Rider de reparto",pro1s:"Uber Eats, Glovo, Amazon…",pro2t:"Taxista / VTC",pro2s:"Bolt, Uber, Cabify…",pro3t:"Transportista",pro3s:"Rutas, portes, logística",pro4t:"Autónomo",pro4s:"Cualquier actividad",pro5t:"Usuario particular",pro5s:"Controla tu economía diaria",
+      platLabel:"Plataformas",platTitle:"Compatible con +60 plataformas<br/>en todo el mundo",platSub:"Reparto de comida, transporte VTC, logística, uso personal o autónomo. ¿No está la tuya? Usa «Otro» para cualquier concepto.",
+      platCat1:"🍕 Reparto de comida",platMore1:"+17 más…",platCat2:"🚕 Transporte / VTC",platMore2:"+5 más…",platCat3:"📦 Logística y paquetería",platMore3:"+6 más…",platCat4:"👤 Uso personal y autónomo",
+      platFixed:"Salario Mensual Fijo",platPrivate:"Reparto Privado",platOther:"Otro / Personalizado",
+      premLabel:"Premium",premTitle:"Desbloquea todo",premSub:"Sin límites. Sin anuncios. Con todas las herramientas que un rider serio necesita.",premPrice:"Solo 4,99 €/mes",
+      pc1:"💰 Registro y exportación",p1_1t:"Registros ilimitados",p1_1d:"Sin tope de anotaciones mensuales. Registra todo lo que necesites.",p1_2t:"Exportación instantánea PDF",p1_2d:"Descarga tu informe al instante, sin ver vídeos ni esperar.",p1_3t:"Exportación a Excel (CSV)",p1_3d:"Exporta todos tus datos en formato Excel con un solo toque.",
+      pc2:"📈 Estadísticas avanzadas",p2_1t:"Gráficos avanzados",p2_1d:"Proyecciones, análisis de gastos y filtros por mes, trimestre, año e historial completo.",p2_2t:"Ingresos por plataforma",p2_2d:"Gráfico detallado de cuánto ganas con cada app. Descubre cuál te paga mejor.",p2_3t:"Análisis de Estrategia",p2_3d:"Descubre en qué plataforma, franja horaria y día ganas más. Insights automáticos.",
+      pc3:"🛣️ GPS y rutas",p3_1t:"+25 RiderCoins/día en rutas",p3_1d:"Los riders gratuitos ganan hasta 15 RC/día. Premium sube el tope a 25.",p3_2t:"Historial GPS de 30 días",p3_2d:"Consulta y analiza tus rutas del último mes. Gratuitos solo ven 7 días.",
+      pc4:"💬 Social sin límites",p4_1t:"Amigos ilimitados",p4_1d:"Sin límite de amigos. Los riders gratuitos tienen un tope de 20.",p4_2t:"Fotos, audios y documentos",p4_2d:"Envía multimedia en chats. Los gratuitos solo pueden enviar texto.",p4_3t:"Historial completo de mensajes",p4_3d:"Hasta 500 mensajes sin límite de tiempo. Gratuitos: 100 mensajes / 30 días.",p4_4t:"Mensajes más largos",p4_4d:"Hasta 1.000 caracteres por mensaje. Gratuitos: 300 caracteres.",p4_5t:"Crea grupos de riders",p4_5d:"Solo Premium puede crear grupos. Los gratuitos pueden unirse pero no crearlos.",
+      pc5:"🎁 Extras",p5_1t:"Sin anuncios",p5_1d:"Experiencia limpia, sin banners ni intersticiales.",p5_2t:"Backup en la nube",p5_2d:"Tus datos sincronizados automáticamente. Cambia de móvil sin perder nada.",p5_3t:"10 giros en la ruleta diaria",p5_3d:"El doble de oportunidades de ganar RiderCoins. Gratuitos: 5 giros/día.",p5_4t:"Consejos IA semanales",p5_4d:"Cada domingo, la IA analiza tu semana y te envía un consejo personalizado para ganar más.",p5_5t:"Soporte prioritario",p5_5d:"Tu consulta llega antes. Atención preferente del equipo de RiderStats.",
+      rcLabel:"RiderCoins",rcTitle:"Gana monedas<br/>mientras trabajas",rcSub:"RiderStats tiene su propio sistema de monedas. Gana RiderCoins por registrar tus jornadas, completar rutas GPS, mantener tu racha diaria o ganar duelos. Canjéalos en la tienda de la app.",
+      rc1t:"Registra ingresos y gastos",rc1d:"Gana monedas por cada anotación que haces",rc2t:"Recorre km con el GPS",rc2d:"1 RiderCoin por cada 5 km a velocidad de reparto",rc3t:"Mantén tu racha diaria",rc3d:"Cuantos más días seguidos, mayor multiplicador de premios",rc4t:"Gana duelos",rc4d:"Reta a un amigo y el ganador se lleva las monedas",rc5t:"Ruleta diaria",rc5d:"Gira cada día y gana premios. Premium: 10 giros, gratuito: 5",
+      ctaTitle:"🚀 El lanzamiento se acerca",ctaSub:"RiderStats llegará próximamente a Google Play. ¡Sigue la cuenta para no perderte el lanzamiento!",ctaBtnLabel:"Disponible muy pronto en",ctaBtnChip:"Próximamente",
+      footerPrivacy:"Política de privacidad",footerContact:"Contacto",footerCopy:"© 2026 RiderStats · Desarrollado por <strong>18Systems</strong> · Todos los derechos reservados."
+    },
+    en: {
+      pageTitle:"RiderStats — App for riders and delivery drivers",
+      navPrivacy:"Privacy",
+      badge:"📱 For everyone — riders, drivers, taxi drivers and any freelancer",
+      heroTitle:"Your money,<br/><span>under control</span>",
+      heroSub:"Whether you deliver orders, drive a taxi, do transport or simply want to track your daily income and expenses. RiderStats is for you.",
+      btnSoonLabel:"Coming soon on",btnChip1:"Soon",btnSecondary:"See features ↓",
+      stat1:"Compatible platforms",stat2:"Languages",stat3:"Tax reports",stat4:"Global ranking",stat5:"Free RiderCoins",stat6num:"Free",stat6:"To get started",
+      featLabel:"Features",featTitle:"Everything you need,<br/>whoever you are",featSub:"Designed for delivery riders, but just as useful for taxi drivers, transporters, freelancers and anyone who wants to track their finances.",
+      f1t:"Income tracking",f1d:"Log payments with tips, platform and notes. Separate personal from work income with one tap.",
+      f2t:"Expense control",f2d:"Fuel, maintenance, insurance, fines… categorized and automatically excluded from your net work income.",
+      f3t:"Real-time dashboard",f3d:"Monthly net updated instantly. Income + tips − expenses at a glance.",
+      f4t:"Export PDF & CSV",f4d:"Generate professional reports for tax purposes or your own records.",
+      f5t:"GPS route tracking",f5d:"Track km per shift. Earn 1 RiderCoin for every 5 km at delivery speed.",
+      f6t:"Global ranking",f6d:"Compete with riders worldwide in the weekly ranking. Earn RiderCoins and rewards.",
+      f7t:"Rider duels",f7d:"Challenge a friend to see who earns more in 24h. The winner takes the RiderCoins.",
+      f8t:"Daily streak",f8d:"Log every day to keep your streak. Multiply your spin rewards and unlock bonuses.",
+      f9t:"Messages & groups",f9d:"Chat with fellow riders, create groups and share photos, audio and documents.",
+      f10t:"Riders forum",f10d:"Debate in the forum by category. Route tips, platforms, mechanics, taxes and more.",
+      f11t:"Daily spin",f11d:"Spin every day to win RiderCoins and special prizes. Your streak multiplies rewards.",
+      f12t:"Maintenance reminder",f12d:"Set alerts for your next vehicle service. No surprises on the road.",
+      forLabel:"For everyone",forTitle:"You don't need to be a delivery rider",forSub:"RiderStats was born in the delivery world, but its tools work for anyone who wants to track their income and expenses.",
+      pro1t:"Delivery rider",pro1s:"Uber Eats, Glovo, Amazon…",pro2t:"Taxi / VTC driver",pro2s:"Bolt, Uber, Cabify…",pro3t:"Transporter",pro3s:"Routes, haulage, logistics",pro4t:"Freelancer",pro4s:"Any activity",pro5t:"Individual user",pro5s:"Control your daily finances",
+      platLabel:"Platforms",platTitle:"Compatible with +60 platforms<br/>worldwide",platSub:"Food delivery, VTC transport, logistics, personal or freelance use. Not listed? Use «Other» for any concept.",
+      platCat1:"🍕 Food delivery",platMore1:"+17 more…",platCat2:"🚕 Transport / VTC",platMore2:"+5 more…",platCat3:"📦 Logistics & courier",platMore3:"+6 more…",platCat4:"👤 Personal & freelance use",
+      platFixed:"Fixed Monthly Salary",platPrivate:"Private Delivery",platOther:"Other / Custom",
+      premLabel:"Premium",premTitle:"Unlock everything",premSub:"No limits. No ads. All the tools a serious rider needs.",premPrice:"Only €4.99/month",
+      pc1:"💰 Logging & export",p1_1t:"Unlimited records",p1_1d:"No monthly cap. Log as much as you need.",p1_2t:"Instant PDF export",p1_2d:"Download your report instantly, no videos to watch.",p1_3t:"Excel export (CSV)",p1_3d:"Export all your data in Excel format with one tap.",
+      pc2:"📈 Advanced stats",p2_1t:"Advanced charts",p2_1d:"Projections, expense analysis and filters by month, quarter, year and full history.",p2_2t:"Income by platform",p2_2d:"Detailed chart of what each app pays you. Find your best earner.",p2_3t:"Strategy analysis",p2_3d:"Discover which platform, time slot and day earns you the most. Automatic insights.",
+      pc3:"🛣️ GPS & routes",p3_1t:"+25 RiderCoins/day on routes",p3_1d:"Free riders earn up to 15 RC/day. Premium raises the cap to 25.",p3_2t:"30-day GPS history",p3_2d:"View and analyze your routes from the last month. Free riders see 7 days.",
+      pc4:"💬 Unlimited social",p4_1t:"Unlimited friends",p4_1d:"No friend limit. Free riders are capped at 20.",p4_2t:"Photos, audio & documents",p4_2d:"Send multimedia in chats. Free users can only send text.",p4_3t:"Full message history",p4_3d:"Up to 500 messages with no time limit. Free: 100 messages / 30 days.",p4_4t:"Longer messages",p4_4d:"Up to 1,000 characters per message. Free: 300 characters.",p4_5t:"Create rider groups",p4_5d:"Only Premium can create groups. Free users can join but not create.",
+      pc5:"🎁 Extras",p5_1t:"No ads",p5_1d:"Clean experience, no banners or interstitials.",p5_2t:"Cloud backup",p5_2d:"Your data synced automatically. Switch phones without losing anything.",p5_3t:"10 daily spins",p5_3d:"Double the chances to win RiderCoins. Free: 5 spins/day.",p5_4t:"Weekly AI tips",p5_4d:"Every Sunday, AI analyzes your week and sends a personalized tip to earn more.",p5_5t:"Priority support",p5_5d:"Your query gets answered first. Preferential attention from the RiderStats team.",
+      rcLabel:"RiderCoins",rcTitle:"Earn coins<br/>while you work",rcSub:"RiderStats has its own coin system. Earn RiderCoins by logging your shifts, completing GPS routes, keeping your daily streak or winning duels. Redeem them in the app store.",
+      rc1t:"Log income & expenses",rc1d:"Earn coins for every entry you make",rc2t:"Cover km with GPS",rc2d:"1 RiderCoin for every 5 km at delivery speed",rc3t:"Keep your daily streak",rc3d:"The more consecutive days, the higher your rewards multiplier",rc4t:"Win duels",rc4d:"Challenge a friend and the winner takes the coins",rc5t:"Daily spin",rc5d:"Spin every day and win prizes. Premium: 10 spins, free: 5",
+      ctaTitle:"🚀 Launch is coming",ctaSub:"RiderStats is coming soon to Google Play. Follow us so you don't miss the launch!",ctaBtnLabel:"Available very soon on",ctaBtnChip:"Coming soon",
+      footerPrivacy:"Privacy policy",footerContact:"Contact",footerCopy:"© 2026 RiderStats · Developed by <strong>18Systems</strong> · All rights reserved."
+    },
+    fr: {
+      pageTitle:"RiderStats — App pour riders et livreurs",
+      navPrivacy:"Confidentialité",
+      badge:"📱 Pour tous — livreurs, chauffeurs, taxis et tout indépendant",
+      heroTitle:"Ton argent,<br/><span>sous contrôle</span>",
+      heroSub:"Que tu livres des commandes, conduises un taxi, fasses du transport ou veuilles simplement suivre tes revenus et dépenses quotidiens. RiderStats est fait pour toi.",
+      btnSoonLabel:"Bientôt sur",btnChip1:"Bientôt",btnSecondary:"Voir les fonctions ↓",
+      stat1:"Plateformes compatibles",stat2:"Langues",stat3:"Rapports fiscaux",stat4:"Classement mondial",stat5:"RiderCoins offerts",stat6num:"Gratuit",stat6:"Pour commencer",
+      featLabel:"Fonctions",featTitle:"Tout ce dont tu as besoin,<br/>qui que tu sois",featSub:"Conçu pour les livreurs, mais tout aussi utile pour les taxis, transporteurs, indépendants et toute personne souhaitant gérer ses finances.",
+      f1t:"Suivi des revenus",f1d:"Ajoute des paiements avec pourboire, plateforme et notes. Sépare le personnel du professionnel.",
+      f2t:"Contrôle des dépenses",f2d:"Carburant, entretien, assurance, amendes… catégorisé et exclu automatiquement du net professionnel.",
+      f3t:"Tableau de bord en temps réel",f3d:"Net mensuel mis à jour instantanément. Revenus + pourboires − dépenses du mois en un coup d'œil.",
+      f4t:"Exporte PDF et CSV",f4d:"Génère des rapports professionnels pour les impôts ou tes archives.",
+      f5t:"Suivi GPS des trajets",f5d:"Enregistre les km de chaque service. Gagne 1 RiderCoin pour 5 km à vitesse de livraison.",
+      f6t:"Classement mondial",f6d:"Concours avec des riders du monde entier dans le classement hebdomadaire.",
+      f7t:"Duels entre riders",f7d:"Défie un ami à voir qui facture le plus en 24h. Le gagnant remporte les RiderCoins.",
+      f8t:"Série quotidienne",f8d:"Enregistre chaque jour pour maintenir ta série. Multiplie les récompenses de la roue.",
+      f9t:"Messages et groupes",f9d:"Chatte avec des collègues, crée des groupes de riders et partage photos, audios et documents.",
+      f10t:"Forum des riders",f10d:"Débat dans le forum par catégories. Conseils de trajet, plateformes, mécanique, fiscalité et plus.",
+      f11t:"Roue quotidienne",f11d:"Tourne chaque jour pour gagner des RiderCoins et des prix spéciaux.",
+      f12t:"Rappel d'entretien",f12d:"Configure des alertes pour le prochain entretien de ton véhicule. Sans surprises en route.",
+      forLabel:"Pour tous",forTitle:"Pas besoin d'être livreur",forSub:"RiderStats est né dans le monde de la livraison, mais ses outils conviennent à toute personne souhaitant contrôler ses revenus et dépenses.",
+      pro1t:"Rider livreur",pro1s:"Uber Eats, Glovo, Amazon…",pro2t:"Taxi / VTC",pro2s:"Bolt, Uber, Cabify…",pro3t:"Transporteur",pro3s:"Trajets, fret, logistique",pro4t:"Indépendant",pro4s:"Toute activité",pro5t:"Utilisateur particulier",pro5s:"Contrôle ton économie quotidienne",
+      platLabel:"Plateformes",platTitle:"Compatible avec +60 plateformes<br/>dans le monde entier",platSub:"Livraison, transport VTC, logistique, usage personnel ou indépendant. La tienne n'est pas listée ? Utilise «Autre» pour tout concept.",
+      platCat1:"🍕 Livraison de repas",platMore1:"+17 autres…",platCat2:"🚕 Transport / VTC",platMore2:"+5 autres…",platCat3:"📦 Logistique et colis",platMore3:"+6 autres…",platCat4:"👤 Usage personnel et indépendant",
+      platFixed:"Salaire Mensuel Fixe",platPrivate:"Livraison Privée",platOther:"Autre / Personnalisé",
+      premLabel:"Premium",premTitle:"Tout débloquer",premSub:"Sans limites. Sans publicités. Tous les outils dont un rider sérieux a besoin.",premPrice:"Seulement 4,99 €/mois",
+      pc1:"💰 Enregistrement et export",p1_1t:"Enregistrements illimités",p1_1d:"Aucune limite mensuelle. Enregistre tout ce dont tu as besoin.",p1_2t:"Export PDF instantané",p1_2d:"Télécharge ton rapport instantanément, sans regarder de vidéos.",p1_3t:"Export Excel (CSV)",p1_3d:"Exporte toutes tes données en format Excel en un seul tap.",
+      pc2:"📈 Statistiques avancées",p2_1t:"Graphiques avancés",p2_1d:"Projections, analyse des dépenses et filtres par mois, trimestre, année.",p2_2t:"Revenus par plateforme",p2_2d:"Graphique détaillé de ce que chaque app te paie. Découvre laquelle est la meilleure.",p2_3t:"Analyse de stratégie",p2_3d:"Découvre quelle plateforme, tranche horaire et jour te rapporte le plus.",
+      pc3:"🛣️ GPS et trajets",p3_1t:"+25 RiderCoins/jour sur les trajets",p3_1d:"Les riders gratuits gagnent jusqu'à 15 RC/jour. Premium monte le plafond à 25.",p3_2t:"Historique GPS 30 jours",p3_2d:"Consulte et analyse tes trajets du dernier mois. Gratuits : 7 jours.",
+      pc4:"💬 Social illimité",p4_1t:"Amis illimités",p4_1d:"Sans limite d'amis. Les riders gratuits sont limités à 20.",p4_2t:"Photos, audios et documents",p4_2d:"Envoie du multimédia dans les chats. Les gratuits peuvent seulement envoyer du texte.",p4_3t:"Historique complet des messages",p4_3d:"Jusqu'à 500 messages sans limite de temps. Gratuits : 100 messages / 30 jours.",p4_4t:"Messages plus longs",p4_4d:"Jusqu'à 1 000 caractères par message. Gratuits : 300 caractères.",p4_5t:"Créer des groupes de riders",p4_5d:"Seul Premium peut créer des groupes. Les gratuits peuvent rejoindre mais pas créer.",
+      pc5:"🎁 Extras",p5_1t:"Sans publicités",p5_1d:"Expérience propre, sans bannières ni interstitiels.",p5_2t:"Sauvegarde cloud",p5_2d:"Tes données synchronisées automatiquement. Change de téléphone sans rien perdre.",p5_3t:"10 tours de roue quotidiens",p5_3d:"Le double des chances de gagner des RiderCoins. Gratuits : 5 tours/jour.",p5_4t:"Conseils IA hebdomadaires",p5_4d:"Chaque dimanche, l'IA analyse ta semaine et t'envoie un conseil personnalisé.",p5_5t:"Support prioritaire",p5_5d:"Ta demande est traitée en premier. Attention préférentielle de l'équipe RiderStats.",
+      rcLabel:"RiderCoins",rcTitle:"Gagne des pièces<br/>pendant que tu travailles",rcSub:"RiderStats possède son propre système de pièces. Gagne des RiderCoins en enregistrant tes journées, en faisant des trajets GPS, en maintenant ta série ou en gagnant des duels.",
+      rc1t:"Enregistre revenus et dépenses",rc1d:"Gagne des pièces pour chaque entrée que tu fais",rc2t:"Parcoure des km avec le GPS",rc2d:"1 RiderCoin pour chaque 5 km à vitesse de livraison",rc3t:"Maintiens ta série quotidienne",rc3d:"Plus tu enchaînes les jours, plus le multiplicateur de récompenses est élevé",rc4t:"Gagne des duels",rc4d:"Défie un ami et le gagnant prend les pièces",rc5t:"Roue quotidienne",rc5d:"Tourne chaque jour et gagne des prix. Premium : 10 tours, gratuit : 5",
+      ctaTitle:"🚀 Le lancement approche",ctaSub:"RiderStats arrivera bientôt sur Google Play. Suis le compte pour ne pas rater le lancement !",ctaBtnLabel:"Disponible très bientôt sur",ctaBtnChip:"Bientôt",
+      footerPrivacy:"Politique de confidentialité",footerContact:"Contact",footerCopy:"© 2026 RiderStats · Développé par <strong>18Systems</strong> · Tous droits réservés."
+    },
+    pt: {
+      pageTitle:"RiderStats — App para riders e estafetas",
+      navPrivacy:"Privacidade",
+      badge:"📱 Para todos — riders, motoristas, taxistas e qualquer autónomo",
+      heroTitle:"O teu dinheiro,<br/><span>sob controlo</span>",
+      heroSub:"Seja para entregas, táxi, transporte ou simplesmente controlar as tuas finanças do dia a dia. RiderStats é para ti.",
+      btnSoonLabel:"Em breve em",btnChip1:"Em breve",btnSecondary:"Ver funções ↓",
+      stat1:"Plataformas compatíveis",stat2:"Idiomas",stat3:"Relatórios fiscais",stat4:"Ranking global",stat5:"RiderCoins grátis",stat6num:"Grátis",stat6:"Para começar",
+      featLabel:"Funções",featTitle:"Tudo o que precisas,<br/>seja quem fores",featSub:"Desenhado para estafetas, mas igualmente útil para taxistas, transportadores, autónomos e qualquer pessoa que queira controlar as suas finanças.",
+      f1t:"Registo de rendimentos",f1d:"Adiciona pagamentos com gorjeta, plataforma e notas. Separa trabalho pessoal do profissional.",
+      f2t:"Controlo de despesas",f2d:"Combustível, manutenção, seguro, multas… categorizado e excluído automaticamente do líquido profissional.",
+      f3t:"Dashboard em tempo real",f3d:"Líquido mensal atualizado ao instante. Rendimentos + gorjetas − despesas do mês.",
+      f4t:"Exporta PDF e CSV",f4d:"Gera relatórios profissionais para o fisco ou arquivo pessoal.",
+      f5t:"Registo GPS de rotas",f5d:"Regista os km de cada turno. Ganha 1 RiderCoin por cada 5 km a velocidade de entrega.",
+      f6t:"Ranking global",f6d:"Compete com riders de todo o mundo no ranking semanal.",
+      f7t:"Duelos entre riders",f7d:"Desafia um amigo a ver quem fatura mais em 24h. O vencedor fica com os RiderCoins.",
+      f8t:"Série diária",f8d:"Regista todos os dias para manter a tua série. Multiplica os prémios da roleta.",
+      f9t:"Mensagens e grupos",f9d:"Fala com colegas, cria grupos de riders e partilha fotos, áudios e documentos.",
+      f10t:"Fórum de riders",f10d:"Debate no fórum por categorias. Dicas de rota, plataformas, mecânica, fiscalidade e mais.",
+      f11t:"Roleta diária",f11d:"Gira todos os dias para ganhar RiderCoins e prémios especiais.",
+      f12t:"Lembrete de manutenção",f12d:"Configura alertas para a próxima revisão do veículo. Sem surpresas na estrada.",
+      forLabel:"Para todos",forTitle:"Não precisas de ser estafeta",forSub:"RiderStats nasceu no mundo das entregas, mas as suas ferramentas servem qualquer pessoa que queira controlar os seus rendimentos e despesas.",
+      pro1t:"Rider de entrega",pro1s:"Uber Eats, Glovo, Amazon…",pro2t:"Taxista / VTC",pro2s:"Bolt, Uber, Cabify…",pro3t:"Transportador",pro3s:"Rotas, fretes, logística",pro4t:"Autónomo",pro4s:"Qualquer atividade",pro5t:"Utilizador particular",pro5s:"Controla a tua economia diária",
+      platLabel:"Plataformas",platTitle:"Compatível com +60 plataformas<br/>em todo o mundo",platSub:"Entrega de comida, transporte VTC, logística, uso pessoal ou autónomo. A tua não está? Usa «Outro» para qualquer conceito.",
+      platCat1:"🍕 Entrega de comida",platMore1:"+17 mais…",platCat2:"🚕 Transporte / VTC",platMore2:"+5 mais…",platCat3:"📦 Logística e encomendas",platMore3:"+6 mais…",platCat4:"👤 Uso pessoal e autónomo",
+      platFixed:"Salário Mensal Fixo",platPrivate:"Entrega Privada",platOther:"Outro / Personalizado",
+      premLabel:"Premium",premTitle:"Desbloqueia tudo",premSub:"Sem limites. Sem anúncios. Com todas as ferramentas que um rider sério precisa.",premPrice:"Apenas 4,99 €/mês",
+      pc1:"💰 Registo e exportação",p1_1t:"Registos ilimitados",p1_1d:"Sem limite mensal. Regista tudo o que precisares.",p1_2t:"Exportação instantânea PDF",p1_2d:"Descarrega o teu relatório ao instante, sem ver vídeos.",p1_3t:"Exportação Excel (CSV)",p1_3d:"Exporta todos os dados em formato Excel com um toque.",
+      pc2:"📈 Estatísticas avançadas",p2_1t:"Gráficos avançados",p2_1d:"Projeções, análise de despesas e filtros por mês, trimestre, ano.",p2_2t:"Rendimentos por plataforma",p2_2d:"Gráfico detalhado do que cada app te paga. Descobre qual é a melhor.",p2_3t:"Análise de estratégia",p2_3d:"Descobre qual plataforma, horário e dia te rende mais.",
+      pc3:"🛣️ GPS e rotas",p3_1t:"+25 RiderCoins/dia em rotas",p3_1d:"Riders gratuitos ganham até 15 RC/dia. Premium sobe o limite para 25.",p3_2t:"Histórico GPS de 30 dias",p3_2d:"Consulta e analisa as tuas rotas do último mês. Gratuitos: 7 dias.",
+      pc4:"💬 Social sem limites",p4_1t:"Amigos ilimitados",p4_1d:"Sem limite de amigos. Riders gratuitos têm um limite de 20.",p4_2t:"Fotos, áudios e documentos",p4_2d:"Envia multimédia nos chats. Gratuitos só podem enviar texto.",p4_3t:"Histórico completo de mensagens",p4_3d:"Até 500 mensagens sem limite de tempo. Gratuitos: 100 mensagens / 30 dias.",p4_4t:"Mensagens mais longas",p4_4d:"Até 1.000 caracteres por mensagem. Gratuitos: 300 caracteres.",p4_5t:"Cria grupos de riders",p4_5d:"Só Premium pode criar grupos. Gratuitos podem entrar mas não criar.",
+      pc5:"🎁 Extras",p5_1t:"Sem anúncios",p5_1d:"Experiência limpa, sem banners nem intersticiais.",p5_2t:"Backup na nuvem",p5_2d:"Os teus dados sincronizados automaticamente. Muda de telemóvel sem perder nada.",p5_3t:"10 giros na roleta diária",p5_3d:"O dobro das hipóteses de ganhar RiderCoins. Gratuitos: 5 giros/dia.",p5_4t:"Dicas IA semanais",p5_4d:"Todos os domingos, a IA analisa a tua semana e envia uma dica personalizada.",p5_5t:"Suporte prioritário",p5_5d:"A tua questão é respondida primeiro. Atenção preferencial da equipa RiderStats.",
+      rcLabel:"RiderCoins",rcTitle:"Ganha moedas<br/>enquanto trabalhas",rcSub:"RiderStats tem o seu próprio sistema de moedas. Ganha RiderCoins por registar as tuas jornadas, completar rotas GPS, manter a tua série ou ganhar duelos.",
+      rc1t:"Regista rendimentos e despesas",rc1d:"Ganha moedas por cada registo que fazes",rc2t:"Percorre km com o GPS",rc2d:"1 RiderCoin por cada 5 km a velocidade de entrega",rc3t:"Mantém a tua série diária",rc3d:"Quanto mais dias seguidos, maior o multiplicador de prémios",rc4t:"Ganha duelos",rc4d:"Desafia um amigo e o vencedor fica com as moedas",rc5t:"Roleta diária",rc5d:"Gira todos os dias e ganha prémios. Premium: 10 giros, gratuito: 5",
+      ctaTitle:"🚀 O lançamento está a chegar",ctaSub:"RiderStats chegará em breve ao Google Play. Segue a conta para não perderes o lançamento!",ctaBtnLabel:"Disponível muito em breve em",ctaBtnChip:"Em breve",
+      footerPrivacy:"Política de privacidade",footerContact:"Contacto",footerCopy:"© 2026 RiderStats · Desenvolvido por <strong>18Systems</strong> · Todos os direitos reservados."
+    },
+    de: {
+      pageTitle:"RiderStats — App für Rider und Lieferfahrer",
+      navPrivacy:"Datenschutz",
+      badge:"📱 Für alle — Rider, Fahrer, Taxifahrer und Selbstständige",
+      heroTitle:"Dein Geld,<br/><span>unter Kontrolle</span>",
+      heroSub:"Egal ob du lieferst, Taxi fährst, Transporte machst oder einfach deine täglichen Einnahmen und Ausgaben im Blick behalten möchtest. RiderStats ist für dich.",
+      btnSoonLabel:"Demnächst auf",btnChip1:"Bald",btnSecondary:"Funktionen ansehen ↓",
+      stat1:"Kompatible Plattformen",stat2:"Sprachen",stat3:"Steuerberichte",stat4:"Globales Ranking",stat5:"Kostenlose RiderCoins",stat6num:"Kostenlos",stat6:"Zum Einstieg",
+      featLabel:"Funktionen",featTitle:"Alles was du brauchst,<br/>wer auch immer du bist",featSub:"Für Lieferfahrer entwickelt, aber genauso nützlich für Taxifahrer, Transporteure, Selbstständige und alle, die ihre Finanzen im Griff haben wollen.",
+      f1t:"Einnahmen erfassen",f1d:"Zahlungen mit Trinkgeld, Plattform und Notizen hinzufügen. Privates und berufliches trennen.",
+      f2t:"Ausgaben kontrollieren",f2d:"Benzin, Wartung, Versicherung, Bußgelder… kategorisiert und automatisch vom Nettoeinkommen ausgeschlossen.",
+      f3t:"Echtzeit-Dashboard",f3d:"Monatliches Netto sofort aktualisiert. Einnahmen + Trinkgeld − Ausgaben auf einen Blick.",
+      f4t:"PDF & CSV exportieren",f4d:"Professionelle Berichte für das Finanzamt oder eigene Aufzeichnungen erstellen.",
+      f5t:"GPS-Routenverfolgung",f5d:"Km pro Schicht erfassen. Verdiene 1 RiderCoin für je 5 km auf Liefergeschwindigkeit.",
+      f6t:"Globales Ranking",f6d:"Mit Ridern aus aller Welt im wöchentlichen Ranking konkurrieren.",
+      f7t:"Rider-Duelle",f7d:"Fordere einen Freund heraus, wer in 24h mehr verdient. Der Gewinner bekommt die RiderCoins.",
+      f8t:"Tägliche Serie",f8d:"Täglich erfassen, um deine Serie zu halten. Multiplikator für Glücksrad-Gewinne steigern.",
+      f9t:"Nachrichten & Gruppen",f9d:"Mit Kollegen chatten, Rider-Gruppen erstellen und Fotos, Audios und Dokumente teilen.",
+      f10t:"Rider-Forum",f10d:"Im Forum nach Kategorien diskutieren. Tipps zu Routen, Plattformen, Mechanik, Steuern und mehr.",
+      f11t:"Tägliches Glücksrad",f11d:"Täglich drehen für RiderCoins und Sonderpreise. Deine Serie multipliziert die Gewinne.",
+      f12t:"Wartungserinnerung",f12d:"Benachrichtigungen für den nächsten Fahrzeugservice einrichten. Keine Überraschungen unterwegs.",
+      forLabel:"Für alle",forTitle:"Du musst kein Lieferfahrer sein",forSub:"RiderStats wurde in der Lieferwelt geboren, aber seine Werkzeuge helfen jedem, der Einnahmen und Ausgaben kontrollieren möchte.",
+      pro1t:"Lieferfahrer",pro1s:"Uber Eats, Glovo, Amazon…",pro2t:"Taxi- / VTC-Fahrer",pro2s:"Bolt, Uber, Cabify…",pro3t:"Transporteur",pro3s:"Routen, Fracht, Logistik",pro4t:"Selbstständiger",pro4s:"Jede Tätigkeit",pro5t:"Privatnutzer",pro5s:"Tägliche Finanzen im Griff",
+      platLabel:"Plattformen",platTitle:"Kompatibel mit +60 Plattformen<br/>weltweit",platSub:"Essenslieferung, VTC-Transport, Logistik, private oder selbstständige Nutzung. Deine nicht dabei? Nutze «Sonstiges» für jeden Begriff.",
+      platCat1:"🍕 Essenslieferung",platMore1:"+17 weitere…",platCat2:"🚕 Transport / VTC",platMore2:"+5 weitere…",platCat3:"📦 Logistik & Pakete",platMore3:"+6 weitere…",platCat4:"👤 Privat & selbstständig",
+      platFixed:"Festes Monatsgehalt",platPrivate:"Private Lieferung",platOther:"Sonstiges / Benutzerdefiniert",
+      premLabel:"Premium",premTitle:"Alles freischalten",premSub:"Keine Grenzen. Keine Werbung. Alle Werkzeuge, die ein ernsthafter Rider braucht.",premPrice:"Nur 4,99 €/Monat",
+      pc1:"💰 Erfassung & Export",p1_1t:"Unbegrenzte Einträge",p1_1d:"Kein monatliches Limit. Erfasse so viel du brauchst.",p1_2t:"Sofortiger PDF-Export",p1_2d:"Bericht sofort herunterladen, ohne Videos anzusehen.",p1_3t:"Excel-Export (CSV)",p1_3d:"Alle Daten mit einem Tippen im Excel-Format exportieren.",
+      pc2:"📈 Erweiterte Statistiken",p2_1t:"Erweiterte Diagramme",p2_1d:"Prognosen, Ausgabenanalyse und Filter nach Monat, Quartal, Jahr.",p2_2t:"Einnahmen nach Plattform",p2_2d:"Detailliertes Diagramm, was jede App dir zahlt. Finde deinen besten Verdiener.",p2_3t:"Strategieanalyse",p2_3d:"Entdecke, welche Plattform, Zeitfenster und Tag dir am meisten einbringt.",
+      pc3:"🛣️ GPS & Routen",p3_1t:"+25 RiderCoins/Tag auf Routen",p3_1d:"Kostenlose Rider verdienen bis zu 15 RC/Tag. Premium erhöht das Limit auf 25.",p3_2t:"30-Tage GPS-Verlauf",p3_2d:"Routen des letzten Monats ansehen und analysieren. Kostenlose: 7 Tage.",
+      pc4:"💬 Unbegrenzt sozial",p4_1t:"Unbegrenzte Freunde",p4_1d:"Kein Freundeslimit. Kostenlose Rider sind auf 20 begrenzt.",p4_2t:"Fotos, Audio & Dokumente",p4_2d:"Multimedia in Chats senden. Kostenlose können nur Text senden.",p4_3t:"Vollständiger Nachrichtenverlauf",p4_3d:"Bis zu 500 Nachrichten ohne Zeitlimit. Kostenlose: 100 Nachrichten / 30 Tage.",p4_4t:"Längere Nachrichten",p4_4d:"Bis zu 1.000 Zeichen pro Nachricht. Kostenlose: 300 Zeichen.",p4_5t:"Rider-Gruppen erstellen",p4_5d:"Nur Premium kann Gruppen erstellen. Kostenlose können beitreten, aber nicht erstellen.",
+      pc5:"🎁 Extras",p5_1t:"Keine Werbung",p5_1d:"Saubere Erfahrung, keine Banner oder Interstitials.",p5_2t:"Cloud-Backup",p5_2d:"Daten automatisch synchronisiert. Handy wechseln ohne Datenverlust.",p5_3t:"10 tägliche Glücksrad-Drehungen",p5_3d:"Doppelte Gewinnchancen für RiderCoins. Kostenlose: 5 Drehungen/Tag.",p5_4t:"Wöchentliche KI-Tipps",p5_4d:"Jeden Sonntag analysiert die KI deine Woche und sendet einen personalisierten Tipp.",p5_5t:"Prioritätssupport",p5_5d:"Deine Anfrage wird zuerst beantwortet. Bevorzugte Betreuung vom RiderStats-Team.",
+      rcLabel:"RiderCoins",rcTitle:"Verdiene Münzen<br/>während du arbeitest",rcSub:"RiderStats hat sein eigenes Münzsystem. Verdiene RiderCoins durch das Erfassen deiner Schichten, GPS-Routen, tägliche Serie oder gewonnene Duelle.",
+      rc1t:"Einnahmen & Ausgaben erfassen",rc1d:"Münzen für jeden Eintrag verdienen",rc2t:"Km mit GPS zurücklegen",rc2d:"1 RiderCoin für je 5 km auf Liefergeschwindigkeit",rc3t:"Tägliche Serie halten",rc3d:"Je mehr aufeinanderfolgende Tage, desto höher der Multiplikator",rc4t:"Duelle gewinnen",rc4d:"Freund herausfordern und der Gewinner bekommt die Münzen",rc5t:"Tägliches Glücksrad",rc5d:"Täglich drehen und Preise gewinnen. Premium: 10 Drehungen, kostenlos: 5",
+      ctaTitle:"🚀 Der Launch naht",ctaSub:"RiderStats kommt bald zu Google Play. Folge dem Account, um den Launch nicht zu verpassen!",ctaBtnLabel:"Sehr bald verfügbar auf",ctaBtnChip:"Bald",
+      footerPrivacy:"Datenschutzrichtlinie",footerContact:"Kontakt",footerCopy:"© 2026 RiderStats · Entwickelt von <strong>18Systems</strong> · Alle Rechte vorbehalten."
+    },
+    it: {
+      pageTitle:"RiderStats — App per rider e fattorini",
+      navPrivacy:"Privacy",
+      badge:"📱 Per tutti — rider, autisti, tassisti e qualsiasi libero professionista",
+      heroTitle:"I tuoi soldi,<br/><span>sotto controllo</span>",
+      heroSub:"Che tu consegni ordini, guidi un taxi, faccia trasporti o voglia semplicemente tenere sotto controllo le tue entrate e uscite quotidiane. RiderStats è per te.",
+      btnSoonLabel:"Prossimamente su",btnChip1:"Presto",btnSecondary:"Vedi funzioni ↓",
+      stat1:"Piattaforme compatibili",stat2:"Lingue",stat3:"Report fiscali",stat4:"Classifica globale",stat5:"RiderCoins gratis",stat6num:"Gratis",stat6:"Per iniziare",
+      featLabel:"Funzioni",featTitle:"Tutto ciò di cui hai bisogno,<br/>chiunque tu sia",featSub:"Progettato per i rider, ma altrettanto utile per taxisti, trasportatori, liberi professionisti e chiunque voglia tenere le proprie finanze in ordine.",
+      f1t:"Registrazione entrate",f1d:"Aggiungi pagamenti con mancia, piattaforma e note. Separa lavoro personale da professionale.",
+      f2t:"Controllo spese",f2d:"Carburante, manutenzione, assicurazione, multe… categorizzato ed escluso automaticamente dal netto professionale.",
+      f3t:"Dashboard in tempo reale",f3d:"Netto mensile aggiornato all'istante. Entrate + mance − spese del mese in un colpo d'occhio.",
+      f4t:"Esporta PDF e CSV",f4d:"Genera report professionali per il fisco o il tuo archivio.",
+      f5t:"Tracciamento GPS percorsi",f5d:"Registra i km di ogni turno. Guadagna 1 RiderCoin ogni 5 km a velocità di consegna.",
+      f6t:"Classifica globale",f6d:"Gareggia con rider di tutto il mondo nella classifica settimanale.",
+      f7t:"Duelli tra rider",f7d:"Sfida un amico a chi fattura di più in 24h. Il vincitore si porta i RiderCoins.",
+      f8t:"Streak giornaliero",f8d:"Registra ogni giorno per mantenere la tua streak. Moltiplica i premi della ruota.",
+      f9t:"Messaggi e gruppi",f9d:"Chatta con colleghi, crea gruppi di rider e condividi foto, audio e documenti.",
+      f10t:"Forum dei rider",f10d:"Discuti nel forum per categorie. Consigli di percorso, piattaforme, meccanica, fiscalità e altro.",
+      f11t:"Ruota quotidiana",f11d:"Gira ogni giorno per vincere RiderCoins e premi speciali.",
+      f12t:"Promemoria manutenzione",f12d:"Configura avvisi per il prossimo tagliando del veicolo. Nessuna sorpresa in strada.",
+      forLabel:"Per tutti",forTitle:"Non devi essere un fattorino",forSub:"RiderStats è nato nel mondo delle consegne, ma i suoi strumenti sono utili a chiunque voglia controllare entrate e uscite.",
+      pro1t:"Rider / Fattorino",pro1s:"Uber Eats, Glovo, Amazon…",pro2t:"Tassista / NCC",pro2s:"Bolt, Uber, Cabify…",pro3t:"Trasportatore",pro3s:"Percorsi, trasporti, logistica",pro4t:"Libero professionista",pro4s:"Qualsiasi attività",pro5t:"Utente privato",pro5s:"Controlla la tua economia quotidiana",
+      platLabel:"Piattaforme",platTitle:"Compatibile con +60 piattaforme<br/>in tutto il mondo",platSub:"Consegna cibo, trasporto NCC, logistica, uso personale o professionale. La tua non è nella lista? Usa «Altro» per qualsiasi concetto.",
+      platCat1:"🍕 Consegna cibo",platMore1:"+17 altri…",platCat2:"🚕 Trasporto / NCC",platMore2:"+5 altri…",platCat3:"📦 Logistica e corriere",platMore3:"+6 altri…",platCat4:"👤 Uso personale e professionale",
+      platFixed:"Stipendio Mensile Fisso",platPrivate:"Consegna Privata",platOther:"Altro / Personalizzato",
+      premLabel:"Premium",premTitle:"Sblocca tutto",premSub:"Senza limiti. Senza pubblicità. Con tutti gli strumenti di cui un rider serio ha bisogno.",premPrice:"Solo 4,99 €/mese",
+      pc1:"💰 Registrazione ed export",p1_1t:"Registrazioni illimitate",p1_1d:"Nessun limite mensile. Registra tutto ciò che ti serve.",p1_2t:"Esportazione PDF istantanea",p1_2d:"Scarica il tuo report all'istante, senza guardare video.",p1_3t:"Esportazione Excel (CSV)",p1_3d:"Esporta tutti i dati in formato Excel con un solo tocco.",
+      pc2:"📈 Statistiche avanzate",p2_1t:"Grafici avanzati",p2_1d:"Proiezioni, analisi delle spese e filtri per mese, trimestre, anno.",p2_2t:"Entrate per piattaforma",p2_2d:"Grafico dettagliato di quanto ti paga ogni app. Scopri quale è la migliore.",p2_3t:"Analisi della strategia",p2_3d:"Scopri quale piattaforma, fascia oraria e giorno ti rende di più.",
+      pc3:"🛣️ GPS e percorsi",p3_1t:"+25 RiderCoins/giorno sui percorsi",p3_1d:"I rider gratuiti guadagnano fino a 15 RC/giorno. Premium alza il limite a 25.",p3_2t:"Storico GPS 30 giorni",p3_2d:"Consulta e analizza i tuoi percorsi dell'ultimo mese. Gratuiti: 7 giorni.",
+      pc4:"💬 Social senza limiti",p4_1t:"Amici illimitati",p4_1d:"Nessun limite di amici. I rider gratuiti hanno un tetto di 20.",p4_2t:"Foto, audio e documenti",p4_2d:"Invia multimedia nelle chat. I gratuiti possono solo inviare testo.",p4_3t:"Storico completo messaggi",p4_3d:"Fino a 500 messaggi senza limite di tempo. Gratuiti: 100 messaggi / 30 giorni.",p4_4t:"Messaggi più lunghi",p4_4d:"Fino a 1.000 caratteri per messaggio. Gratuiti: 300 caratteri.",p4_5t:"Crea gruppi di rider",p4_5d:"Solo Premium può creare gruppi. I gratuiti possono entrare ma non creare.",
+      pc5:"🎁 Extra",p5_1t:"Senza pubblicità",p5_1d:"Esperienza pulita, senza banner né interstitial.",p5_2t:"Backup sul cloud",p5_2d:"I tuoi dati sincronizzati automaticamente. Cambia telefono senza perdere nulla.",p5_3t:"10 giri della ruota al giorno",p5_3d:"Il doppio delle possibilità di vincere RiderCoins. Gratuiti: 5 giri/giorno.",p5_4t:"Consigli IA settimanali",p5_4d:"Ogni domenica l'IA analizza la tua settimana e ti invia un consiglio personalizzato.",p5_5t:"Supporto prioritario",p5_5d:"La tua richiesta viene gestita prima. Attenzione preferenziale del team RiderStats.",
+      rcLabel:"RiderCoins",rcTitle:"Guadagna monete<br/>mentre lavori",rcSub:"RiderStats ha il suo sistema di monete. Guadagna RiderCoins registrando le tue giornate, completando percorsi GPS, mantenendo la streak o vincendo duelli.",
+      rc1t:"Registra entrate e uscite",rc1d:"Guadagna monete per ogni voce che inserisci",rc2t:"Percorri km con il GPS",rc2d:"1 RiderCoin ogni 5 km a velocità di consegna",rc3t:"Mantieni la streak giornaliera",rc3d:"Più giorni consecutivi, maggiore il moltiplicatore di premi",rc4t:"Vinci i duelli",rc4d:"Sfida un amico e il vincitore si porta le monete",rc5t:"Ruota quotidiana",rc5d:"Gira ogni giorno e vinci premi. Premium: 10 giri, gratuito: 5",
+      ctaTitle:"🚀 Il lancio si avvicina",ctaSub:"RiderStats arriverà presto su Google Play. Segui il profilo per non perderti il lancio!",ctaBtnLabel:"Disponibile molto presto su",ctaBtnChip:"Prossimamente",
+      footerPrivacy:"Informativa sulla privacy",footerContact:"Contatto",footerCopy:"© 2026 RiderStats · Sviluppato da <strong>18Systems</strong> · Tutti i diritti riservati."
+    },
+    ro: {
+      pageTitle:"RiderStats — Aplicație pentru rideri și curieri",
+      navPrivacy:"Confidențialitate",
+      badge:"📱 Pentru toți — rideri, șoferi, taximetriști și orice persoană independentă",
+      heroTitle:"Banii tăi,<br/><span>sub control</span>",
+      heroSub:"Indiferent dacă livrezi comenzi, conduci un taxi, faci transport sau vrei pur și simplu să îți controlezi veniturile și cheltuielile zilnice. RiderStats este pentru tine.",
+      btnSoonLabel:"În curând pe",btnChip1:"În curând",btnSecondary:"Vezi funcții ↓",
+      stat1:"Platforme compatibile",stat2:"Limbi",stat3:"Rapoarte fiscale",stat4:"Clasament global",stat5:"RiderCoins gratuit",stat6num:"Gratuit",stat6:"Pentru a începe",
+      featLabel:"Funcții",featTitle:"Tot ce ai nevoie,<br/>oricare ai fi",featSub:"Proiectat pentru rideri, dar la fel de util pentru taximetriști, transportatori, independenți și oricine dorește să își gestioneze finanțele.",
+      f1t:"Înregistrare venituri",f1d:"Adaugă plăți cu bacșiș, platformă și notițe. Separă munca personală de cea profesională.",
+      f2t:"Control cheltuieli",f2d:"Combustibil, întreținere, asigurare, amenzi… categorisit și exclus automat din venitul net profesional.",
+      f3t:"Dashboard în timp real",f3d:"Venitul net lunar actualizat instant. Venituri + bacșișuri − cheltuieli lunare dintr-o privire.",
+      f4t:"Exportă PDF și CSV",f4d:"Generează rapoarte profesionale pentru fisc sau arhiva personală.",
+      f5t:"Urmărire GPS trasee",f5d:"Înregistrează km per tură. Câștigă 1 RiderCoin la fiecare 5 km la viteză de livrare.",
+      f6t:"Clasament global",f6d:"Concurează cu rideri din toată lumea în clasamentul săptămânal.",
+      f7t:"Dueluri între rideri",f7d:"Provoacă un prieten să vadă cine facturează mai mult în 24h. Câștigătorul ia RiderCoins.",
+      f8t:"Serie zilnică",f8d:"Înregistrează în fiecare zi pentru a-ți menține seria. Multiplică premiile ruletei.",
+      f9t:"Mesaje și grupuri",f9d:"Discută cu colegi, creează grupuri de rideri și partajează fotografii, audio și documente.",
+      f10t:"Forum rideri",f10d:"Dezbate în forum pe categorii. Sfaturi de traseu, platforme, mecanică, fiscalitate și altele.",
+      f11t:"Ruletă zilnică",f11d:"Rotește în fiecare zi pentru a câștiga RiderCoins și premii speciale.",
+      f12t:"Memento întreținere",f12d:"Setează alerte pentru următoarea revizie a vehiculului. Fără surprize pe drum.",
+      forLabel:"Pentru toți",forTitle:"Nu trebuie să fii curier",forSub:"RiderStats s-a născut în lumea livrărilor, dar instrumentele sale sunt utile oricărei persoane care dorește să își controleze veniturile și cheltuielile.",
+      pro1t:"Rider / Curier",pro1s:"Uber Eats, Glovo, Amazon…",pro2t:"Taximetrist / VTC",pro2s:"Bolt, Uber, Cabify…",pro3t:"Transportator",pro3s:"Trasee, marfă, logistică",pro4t:"Persoană independentă",pro4s:"Orice activitate",pro5t:"Utilizator particular",pro5s:"Controlează-ți economia zilnică",
+      platLabel:"Platforme",platTitle:"Compatibil cu +60 platforme<br/>din întreaga lume",platSub:"Livrare mâncare, transport VTC, logistică, uz personal sau independent. A ta nu e în listă? Folosește «Altul» pentru orice concept.",
+      platCat1:"🍕 Livrare mâncare",platMore1:"+17 altele…",platCat2:"🚕 Transport / VTC",platMore2:"+5 altele…",platCat3:"📦 Logistică și curierat",platMore3:"+6 altele…",platCat4:"👤 Uz personal și independent",
+      platFixed:"Salariu Lunar Fix",platPrivate:"Livrare Privată",platOther:"Altul / Personalizat",
+      premLabel:"Premium",premTitle:"Deblochează totul",premSub:"Fără limite. Fără reclame. Cu toate instrumentele de care un rider serios are nevoie.",premPrice:"Doar 4,99 €/lună",
+      pc1:"💰 Înregistrare și export",p1_1t:"Înregistrări nelimitate",p1_1d:"Niciun plafon lunar. Înregistrează tot ce ai nevoie.",p1_2t:"Export PDF instant",p1_2d:"Descarcă raportul instant, fără a viziona videoclipuri.",p1_3t:"Export Excel (CSV)",p1_3d:"Exportă toate datele în format Excel cu o singură atingere.",
+      pc2:"📈 Statistici avansate",p2_1t:"Grafice avansate",p2_1d:"Proiecții, analiză cheltuieli și filtre pe lună, trimestru, an.",p2_2t:"Venituri pe platformă",p2_2d:"Grafic detaliat al câștigurilor de pe fiecare aplicație. Descoperă care plătește mai bine.",p2_3t:"Analiză strategie",p2_3d:"Descoperă ce platformă, interval orar și zi îți aduce cele mai mari câștiguri.",
+      pc3:"🛣️ GPS și trasee",p3_1t:"+25 RiderCoins/zi pe trasee",p3_1d:"Riderii gratuiți câștigă până la 15 RC/zi. Premium ridică limita la 25.",p3_2t:"Istoric GPS 30 zile",p3_2d:"Consultă și analizează traseele din ultima lună. Gratuiți: 7 zile.",
+      pc4:"💬 Social fără limite",p4_1t:"Prieteni nelimitați",p4_1d:"Niciun plafon de prieteni. Riderii gratuiți au un maxim de 20.",p4_2t:"Fotografii, audio și documente",p4_2d:"Trimite multimedia în chat-uri. Gratuiții pot trimite doar text.",p4_3t:"Istoric complet mesaje",p4_3d:"Până la 500 mesaje fără limită de timp. Gratuiți: 100 mesaje / 30 zile.",p4_4t:"Mesaje mai lungi",p4_4d:"Până la 1.000 caractere per mesaj. Gratuiți: 300 caractere.",p4_5t:"Creează grupuri de rideri",p4_5d:"Doar Premium poate crea grupuri. Gratuiții pot intra dar nu crea.",
+      pc5:"🎁 Extra",p5_1t:"Fără reclame",p5_1d:"Experiență curată, fără bannere sau interstiții.",p5_2t:"Backup în cloud",p5_2d:"Datele tale sincronizate automat. Schimbă telefonul fără să pierzi nimic.",p5_3t:"10 rotiri la ruleta zilnică",p5_3d:"Duble șanse de a câștiga RiderCoins. Gratuiți: 5 rotiri/zi.",p5_4t:"Sfaturi IA săptămânale",p5_4d:"În fiecare duminică, IA analizează săptămâna ta și trimite un sfat personalizat.",p5_5t:"Suport prioritar",p5_5d:"Solicitarea ta este rezolvată prima. Atenție preferențială din partea echipei RiderStats.",
+      rcLabel:"RiderCoins",rcTitle:"Câștigă monede<br/>în timp ce muncești",rcSub:"RiderStats are propriul sistem de monede. Câștigă RiderCoins înregistrând turele, completând trasee GPS, menținând seria sau câștigând dueluri.",
+      rc1t:"Înregistrează venituri și cheltuieli",rc1d:"Câștigă monede pentru fiecare înregistrare",rc2t:"Parcurge km cu GPS",rc2d:"1 RiderCoin la fiecare 5 km la viteză de livrare",rc3t:"Menține seria zilnică",rc3d:"Cu cât mai multe zile consecutive, cu atât mai mare multiplicatorul",rc4t:"Câștigă dueluri",rc4d:"Provoacă un prieten și câștigătorul ia monedele",rc5t:"Ruletă zilnică",rc5d:"Rotește în fiecare zi și câștigă premii. Premium: 10 rotiri, gratuit: 5",
+      ctaTitle:"🚀 Lansarea se apropie",ctaSub:"RiderStats va fi disponibil în curând pe Google Play. Urmărește contul pentru a nu rata lansarea!",ctaBtnLabel:"Disponibil foarte curând pe",ctaBtnChip:"În curând",
+      footerPrivacy:"Politica de confidențialitate",footerContact:"Contact",footerCopy:"© 2026 RiderStats · Dezvoltat de <strong>18Systems</strong> · Toate drepturile rezervate."
+    }
+  };
+
+  const LABELS = {es:'ES',en:'EN',fr:'FR',pt:'PT',de:'DE',it:'IT',ro:'RO'};
+
+  function applyLang(lang) {
+    const t = T[lang] || T.es;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n-html');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.getElementById('html-root').lang = lang;
+    document.getElementById('langCurrent').textContent = LABELS[lang] || lang.toUpperCase();
+    if (t.pageTitle) document.getElementById('page-title').textContent = t.pageTitle;
+    try { localStorage.setItem('riderstats-lang', lang); } catch(e) {}
+  }
+
+  function setLang(lang) {
+    applyLang(lang);
+    document.getElementById('langDropdown').classList.remove('open');
+  }
+
+  function toggleLangMenu() {
+    document.getElementById('langDropdown').classList.toggle('open');
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.lang-switcher')) {
+      document.getElementById('langDropdown').classList.remove('open');
+    }
+  });
+
+  var supported = ['es','en','fr','pt','de','it','ro'];
+  var saved = null;
+  try { saved = localStorage.getItem('riderstats-lang'); } catch(e) {}
+  var browser = (navigator.language || 'es').slice(0,2).toLowerCase();
+  var detected = saved || (supported.indexOf(browser) !== -1 ? browser : 'es');
+  applyLang(detected);
+  </script>
 </body>
 </html>
