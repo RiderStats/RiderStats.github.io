@@ -52,17 +52,40 @@
     h1 span { color: var(--orange); }
     .hero-sub { font-size: clamp(15px, 2.5vw, 19px); color: var(--muted); max-width: 500px; margin: 0 auto 40px; }
 
-    /* PLAY STORE BUTTON */
-    .btn-play {
-      display: inline-block; text-decoration: none;
-      transition: transform 0.15s, opacity 0.15s;
+    /* COMING SOON BUTTON */
+    .btn-soon {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: linear-gradient(135deg, rgba(255,107,53,0.12), rgba(255,107,53,0.06));
+      border: 1.5px solid rgba(255,107,53,0.45);
+      border-radius: 16px; padding: 14px 22px;
+      text-decoration: none; cursor: default;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .btn-play:hover { transform: translateY(-2px); opacity: 0.9; }
-    .btn-play img { height: 60px; display: block; }
+    .btn-soon:hover { border-color: rgba(255,107,53,0.7); box-shadow: 0 0 20px rgba(255,107,53,0.15); }
+    .btn-soon-icon { font-size: 28px; flex-shrink: 0; }
+    .btn-soon-texts { text-align: left; }
+    .btn-soon-label { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+    .btn-soon-store { font-size: 17px; font-weight: 800; color: var(--text); }
+    .btn-soon-chip {
+      background: var(--orange); color: #fff;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.5px;
+      padding: 3px 9px; border-radius: 99px; white-space: nowrap;
+    }
 
     .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--muted); font-size: 14px; font-weight: 600; padding: 14px 24px; border-radius: 14px; text-decoration: none; border: 1px solid var(--border); transition: border-color 0.2s, color 0.2s; }
     .btn-secondary:hover { border-color: var(--orange); color: var(--text); }
     .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; align-items: center; }
+
+    /* RC COIN */
+    .rc-coin {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(145deg, #FFD84D, #F59E0B, #D97706);
+      border: 2.5px solid #B45309;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 12px; color: #78350F;
+      box-shadow: 0 3px 10px rgba(245,158,11,0.45), inset 0 1px 2px rgba(255,255,255,0.35);
+      margin: 0 auto 6px; letter-spacing: -0.5px;
+    }
 
     /* STATS */
     .stats-band { display: flex; justify-content: center; flex-wrap: wrap; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -120,7 +143,6 @@
     @media (max-width: 600px) {
       .stat-item { padding: 18px 20px; flex: 1 1 45%; }
       nav { padding: 12px 16px; }
-      .btn-play img { height: 52px; }
     }
   </style>
 </head>
@@ -141,9 +163,14 @@
     <h1>Tu dinero,<br/><span>bajo control</span></h1>
     <p class="hero-sub">Da igual si repartes pedidos, conduces un taxi, haces transportes o simplemente quieres controlar tus ingresos y gastos del día a día. RiderStats es para ti.</p>
     <div class="hero-ctas">
-      <a href="https://play.google.com/store/apps/details?id=com.systems18.riderstats" class="btn-play" target="_blank" rel="noopener">
-        <img src="https://play.google.com/intl/es/badges/static/images/badges/es_badge_web_generic.png" alt="Disponible en Google Play" />
-      </a>
+      <div class="btn-soon">
+        <span class="btn-soon-icon">🚀</span>
+        <div class="btn-soon-texts">
+          <div class="btn-soon-label">Próximamente en</div>
+          <div class="btn-soon-store">Google Play</div>
+        </div>
+        <span class="btn-soon-chip">Pronto</span>
+      </div>
       <a href="#funciones" class="btn-secondary">Ver funciones ↓</a>
     </div>
   </section>
@@ -153,7 +180,10 @@
     <div class="stat-item"><div class="stat-num">11</div><div class="stat-label">Plataformas soportadas</div></div>
     <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Idiomas</div></div>
     <div class="stat-item"><div class="stat-num">PDF+CSV</div><div class="stat-label">Exporta informes</div></div>
-    <div class="stat-item"><div class="stat-num">🪙</div><div class="stat-label">RiderCoins incluidos</div></div>
+    <div class="stat-item">
+      <div class="rc-coin">RC</div>
+      <div class="stat-label">RiderCoins incluidos</div>
+    </div>
     <div class="stat-item"><div class="stat-num">Gratis</div><div class="stat-label">Para empezar</div></div>
   </div>
 
@@ -315,11 +345,16 @@
 
   <!-- CTA FINAL -->
   <div class="cta-section">
-    <h2>Empieza gratis hoy</h2>
-    <p class="cta-sub">Sin tarjeta de crédito. Sin suscripción forzada. Descarga y empieza a registrar.</p>
-    <a href="https://play.google.com/store/apps/details?id=com.systems18.riderstats" class="btn-play" target="_blank" rel="noopener">
-      <img src="https://play.google.com/intl/es/badges/static/images/badges/es_badge_web_generic.png" alt="Disponible en Google Play" />
-    </a>
+    <h2>🚀 El lanzamiento se acerca</h2>
+    <p class="cta-sub">RiderStats llegará próximamente a Google Play. ¡Sigue la cuenta para no perderte el lanzamiento!</p>
+    <div class="btn-soon" style="display:inline-flex;">
+      <span class="btn-soon-icon">🏁</span>
+      <div class="btn-soon-texts">
+        <div class="btn-soon-label">Disponible muy pronto en</div>
+        <div class="btn-soon-store">Google Play</div>
+      </div>
+      <span class="btn-soon-chip">Próximamente</span>
+    </div>
   </div>
 
   <footer>
