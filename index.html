@@ -45,8 +45,8 @@
     .lang-dropdown div:hover { background: var(--card2); }
     .hero {
       min-height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 120px 24px 80px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 120px 24px 80px;
       background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,107,53,0.15) 0%, transparent 70%);
     }
     .hero-icon { width: 96px; height: 96px; border-radius: 22px; margin-bottom: 28px; box-shadow: 0 8px 32px rgba(255,107,53,0.35); }
@@ -115,6 +115,58 @@
       .stat-item { padding: 18px 20px; flex: 1 1 45%; }
       nav { padding: 12px 16px; }
     }
+
+    /* ── Hero 2-col ──────────────────────────────── */
+    .hero-inner { display:flex; align-items:center; justify-content:space-between; gap:48px; width:100%; max-width:1100px; flex-wrap:wrap; }
+    .hero-left { flex:1; min-width:280px; text-align:center; }
+    .hero-right { flex-shrink:0; position:relative; width:290px; height:480px; display:flex; align-items:center; justify-content:center; }
+    @media (max-width:860px){ .hero-right{display:none} }
+
+    /* ── Phone mockup ────────────────────────────── */
+    .phone { width:200px; height:400px; background:linear-gradient(180deg,#1a1a35 0%,#0d0d1a 100%); border:2px solid rgba(255,107,53,0.4); border-radius:32px; padding:22px 16px 16px; position:relative; box-shadow:0 0 80px rgba(255,107,53,0.2),0 24px 80px rgba(0,0,0,0.7); overflow:hidden; z-index:1; }
+    .phone::before { content:''; position:absolute; top:10px; left:50%; transform:translateX(-50%); width:36px; height:3px; background:rgba(255,107,53,0.35); border-radius:99px; }
+    .phone::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(255,107,53,0.05) 0%,transparent 40%); pointer-events:none; }
+    .phone-hdr { font-size:8px; color:var(--muted); text-align:center; margin-bottom:14px; margin-top:4px; letter-spacing:0.5px; text-transform:uppercase; }
+    .phone-bal { text-align:center; margin-bottom:12px; }
+    .phone-bal-num { font-size:27px; font-weight:900; color:var(--text); letter-spacing:-1px; }
+    .phone-bal-lbl { font-size:9px; color:#22C55E; display:block; margin-top:1px; }
+    .phone-divider { height:1px; background:rgba(255,255,255,0.06); margin:10px 0; }
+    .phone-bar-row { display:flex; align-items:center; gap:6px; margin-bottom:6px; }
+    .phone-bar-name { font-size:8px; color:var(--muted); width:44px; }
+    .phone-bar-bg { flex:1; height:5px; background:rgba(255,255,255,0.07); border-radius:99px; overflow:hidden; }
+    .phone-bar-fill { height:100%; border-radius:99px; width:0; animation:barGrow 1.5s ease forwards; }
+    @keyframes barGrow { to { width:var(--w); } }
+    .phone-bot { display:flex; justify-content:space-around; margin-top:12px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06); }
+    .phone-stat { text-align:center; }
+    .phone-stat-v { font-size:11px; font-weight:700; color:var(--text); }
+    .phone-stat-l { font-size:7px; color:var(--muted); margin-top:1px; }
+    .phone-glow { position:absolute; bottom:-24px; left:50%; transform:translateX(-50%); width:150px; height:50px; background:radial-gradient(ellipse,rgba(255,107,53,0.28),transparent); pointer-events:none; }
+
+    /* ── Floating cards ──────────────────────────── */
+    .fc { position:absolute; background:rgba(18,18,36,0.96); border:1px solid rgba(255,107,53,0.25); border-radius:12px; padding:10px 14px; font-size:12px; font-weight:700; color:var(--text); white-space:nowrap; box-shadow:0 8px 28px rgba(0,0,0,0.5); backdrop-filter:blur(8px); z-index:2; }
+    .fc span { display:block; font-size:10px; font-weight:400; color:var(--muted); margin-top:2px; }
+    .fc1 { top:16px; right:-52px; animation:fcFloat 3.2s ease-in-out infinite; }
+    .fc2 { bottom:70px; right:-58px; animation:fcFloat 3.2s ease-in-out infinite 1.1s; }
+    .fc3 { bottom:14px; left:-48px; animation:fcFloat 3.2s ease-in-out infinite 2.1s; }
+    @keyframes fcFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+    /* ── How it works ────────────────────────────── */
+    .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; margin-top:40px; }
+    .step { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:28px 22px; text-align:center; transition:border-color 0.2s,transform 0.2s; }
+    .step:hover { border-color:rgba(255,107,53,0.4); transform:translateY(-3px); }
+    .step-num { width:34px; height:34px; background:linear-gradient(135deg,#FF6B35,#FF8C5A); border-radius:50%; font-size:15px; font-weight:900; color:#fff; display:flex; align-items:center; justify-content:center; margin:0 auto 14px; }
+    .step-ico { font-size:30px; margin-bottom:10px; }
+    .step-t { font-size:16px; font-weight:800; margin-bottom:8px; }
+    .step-d { font-size:13px; color:var(--muted); line-height:1.55; }
+    .connector { display:none; }
+    @media(min-width:820px){ .steps{ position:relative; } }
+
+    /* ── Scroll reveal ───────────────────────────── */
+    .reveal { opacity:0; transform:translateY(22px); transition:opacity 0.55s ease,transform 0.55s ease; }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal-d1 { transition-delay:0.1s; }
+    .reveal-d2 { transition-delay:0.2s; }
+    .reveal-d3 { transition-delay:0.3s; }
   </style>
 </head>
 <body>
@@ -143,20 +195,46 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="badge" data-i18n="badge">📱 Para todos — riders, transportistas, taxistas y cualquier autónomo</div>
-    <img src="icon.png" alt="RiderStats" class="hero-icon" />
-    <h1 data-i18n-html="heroTitle">Tu dinero,<br/><span>bajo control</span></h1>
-    <p class="hero-sub" data-i18n="heroSub">Da igual si repartes pedidos, conduces un taxi, haces transportes o simplemente quieres controlar tus ingresos y gastos del día a día. RiderStats es para ti.</p>
-    <div class="hero-ctas">
-      <div class="btn-soon">
-        <span class="btn-soon-icon">🚀</span>
-        <div class="btn-soon-texts">
-          <div class="btn-soon-label" data-i18n="btnSoonLabel">Disponible en</div>
-          <div class="btn-soon-store">Google Play</div>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="badge" data-i18n="badge">📱 Para todos — riders, transportistas, taxistas y cualquier autónomo</div>
+        <img src="icon.png" alt="RiderStats" class="hero-icon" />
+        <h1 data-i18n-html="heroTitle">Tu dinero,<br/><span>bajo control</span></h1>
+        <p class="hero-sub" data-i18n="heroSub">Da igual si repartes pedidos, conduces un taxi, haces transportes o simplemente quieres controlar tus ingresos y gastos del día a día. RiderStats es para ti.</p>
+        <div class="hero-ctas">
+          <div class="btn-soon">
+            <span class="btn-soon-icon">🚀</span>
+            <div class="btn-soon-texts">
+              <div class="btn-soon-label" data-i18n="btnSoonLabel">Disponible en</div>
+              <div class="btn-soon-store">Google Play</div>
+            </div>
+            <span class="btn-soon-chip" data-i18n="btnChip1">Beta</span>
+          </div>
+          <a href="#funciones" class="btn-secondary" data-i18n="btnSecondary">Ver funciones ↓</a>
         </div>
-        <span class="btn-soon-chip" data-i18n="btnChip1">Beta</span>
       </div>
-      <a href="#funciones" class="btn-secondary" data-i18n="btnSecondary">Ver funciones ↓</a>
+      <div class="hero-right">
+        <div class="fc fc1">💰 +€47.20 <span>Uber Eats · hoy</span></div>
+        <div class="fc fc2">🔥 Racha 12 días <span>+45 RC bonus</span></div>
+        <div class="phone">
+          <div class="phone-hdr">Dashboard · Jul 2026</div>
+          <div class="phone-bal">
+            <div class="phone-bal-num" id="heroBalance">€0</div>
+            <span class="phone-bal-lbl" data-i18n="phoneNet">↑ Neto este mes +12%</span>
+          </div>
+          <div class="phone-divider"></div>
+          <div class="phone-bar-row"><div class="phone-bar-name">Uber Eats</div><div class="phone-bar-bg"><div class="phone-bar-fill" style="--w:78%;background:#FF6B35;"></div></div></div>
+          <div class="phone-bar-row"><div class="phone-bar-name">Glovo</div><div class="phone-bar-bg"><div class="phone-bar-fill" style="--w:54%;background:#A855F7;animation-delay:.3s"></div></div></div>
+          <div class="phone-bar-row"><div class="phone-bar-name">Amazon</div><div class="phone-bar-bg"><div class="phone-bar-fill" style="--w:31%;background:#3B82F6;animation-delay:.6s"></div></div></div>
+          <div class="phone-bot">
+            <div class="phone-stat"><div class="phone-stat-v">42.7 km</div><div class="phone-stat-l">📍 GPS</div></div>
+            <div class="phone-stat"><div class="phone-stat-v">🔥 12</div><div class="phone-stat-l" data-i18n="phoneDays">días</div></div>
+            <div class="phone-stat"><div class="phone-stat-v">847 RC</div><div class="phone-stat-l">RiderCoins</div></div>
+          </div>
+          <div class="phone-glow"></div>
+        </div>
+        <div class="fc fc3">🗺️ GPS +8.4 km <span>+16 RC ganados</span></div>
+      </div>
     </div>
   </section>
 
@@ -174,7 +252,7 @@
   </div>
 
   <!-- FEATURES -->
-  <section id="funciones">
+  <section id="funciones" class="reveal">
     <div class="section-label" data-i18n="featLabel">Funciones</div>
     <h2 data-i18n-html="featTitle">Todo lo que necesitas,<br/>seas quien seas</h2>
     <p class="section-sub" data-i18n="featSub">Diseñado para riders de reparto, pero igual de útil para taxistas, transportistas, autónomos y cualquiera que quiera llevar sus cuentas al día.</p>
@@ -200,7 +278,7 @@
   </section>
 
   <!-- FOR EVERYONE -->
-  <section style="text-align:center; padding: 60px 24px;">
+  <section class="reveal" style="text-align:center; padding: 60px 24px;">
     <div class="section-label" data-i18n="forLabel">Para todos</div>
     <h2 data-i18n="forTitle">No hace falta ser repartidor</h2>
     <p style="color:var(--muted);max-width:580px;margin:14px auto 40px;font-size:16px;" data-i18n="forSub">RiderStats nació en el mundo del reparto, pero sus herramientas sirven para cualquier persona que quiera controlar sus ingresos y gastos.</p>
@@ -214,7 +292,7 @@
   </section>
 
   <!-- PLATFORMS -->
-  <section>
+  <section class="reveal">
     <div class="section-label" data-i18n="platLabel">Plataformas</div>
     <h2 data-i18n-html="platTitle">Compatible con +60 plataformas<br/>en todo el mundo</h2>
     <p class="section-sub" data-i18n="platSub">Reparto de comida, transporte VTC, logística, uso personal o autónomo. ¿No está la tuya? Usa «Otro» para cualquier concepto.</p>
@@ -274,6 +352,35 @@
           <span class="platform-pill"><span style="color:#10B981">●</span> <span data-i18n="platPrivate">Reparto Privado</span></span>
           <span class="platform-pill"><span style="color:#8888AA">●</span> <span data-i18n="platOther">Otro / Personalizado</span></span>
         </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- HOW IT WORKS -->
+  <section class="reveal">
+    <div class="section-label" data-i18n="howLabel">Cómo funciona</div>
+    <h2 data-i18n="howTitle">En 3 pasos, listo</h2>
+    <p class="section-sub" data-i18n="howSub">Sin complicaciones. De cero a controlando tus finanzas en menos de dos minutos.</p>
+    <div class="steps">
+      <div class="step reveal reveal-d1">
+        <div class="step-ico">📲</div>
+        <div class="step-num">1</div>
+        <div class="step-t" data-i18n="s1t">Descarga y regístrate</div>
+        <div class="step-d" data-i18n="s1d">Descarga la app, crea tu cuenta gratis y selecciona tus plataformas. Sin tarjeta, sin compromisos.</div>
+      </div>
+      <div class="step reveal reveal-d2">
+        <div class="step-ico">📝</div>
+        <div class="step-num">2</div>
+        <div class="step-t" data-i18n="s2t">Registra tu jornada</div>
+        <div class="step-d" data-i18n="s2d">Anota ingresos, propinas, gastos y activa el GPS para registrar tus km. En segundos, desde cualquier lugar.</div>
+      </div>
+      <div class="step reveal reveal-d3">
+        <div class="step-ico">📊</div>
+        <div class="step-num">3</div>
+        <div class="step-t" data-i18n="s3t">Analiza y conecta</div>
+        <div class="step-d" data-i18n="s3d">Consulta tu dashboard en tiempo real, gana RiderCoins y conecta con miles de riders de todo el mundo.</div>
       </div>
     </div>
   </section>
@@ -417,7 +524,7 @@
       rcLabel:"RiderCoins",rcTitle:"Gana monedas<br/>mientras trabajas",rcSub:"RiderStats tiene su propio sistema de monedas. Gana RiderCoins por registrar tus jornadas, completar rutas GPS, mantener tu racha diaria o ganar duelos. Canjéalos en la tienda de la app.",
       rc1t:"Registra ingresos y gastos",rc1d:"Gana monedas por cada anotación que haces",rc2t:"Recorre km con el GPS",rc2d:"2 RiderCoins por km a velocidad de reparto",rc3t:"Mantén tu racha diaria",rc3d:"Cuantos más días seguidos, mayor multiplicador de premios",rc4t:"Gana duelos",rc4d:"Reta a un amigo y el ganador se lleva las monedas",rc5t:"Ruleta diaria",rc5d:"Gira cada día y gana premios. Premium: 10 giros, gratuito: 5",
       ctaTitle:"🚀 Ya disponible en pruebas",ctaSub:"RiderStats ya está disponible en Google Play para testers. ¡Únete y sé de los primeros en probarlo!",ctaBtnLabel:"Disponible muy pronto en",ctaBtnChip:"Próximamente",
-      f14t:"Slot Machine",f14d:"Prueba suerte en la Slot Machine. 3 giros gratis al día (10 con Premium). Jackpot de 1.000 RC con tres diamantes 💎.",f15t:"Trivia de Riders",f15d:"Responde preguntas sobre el mundo del reparto. Acepta retos de otros riders y gana RiderCoins.",f16t:"Connect 4",f16d:"Juega al 4 en raya contra la IA o en tiempo real contra otro rider. Gana RiderCoins con cada victoria.",f17t:"Meta Diaria con IA",f17d:"Fija tu objetivo de ingresos diario. La IA analiza tu progreso y deja comentarios personalizados en tu historial.",rc6t:"Slot Machine",rc6d:"3 giros gratis al día. Jackpot: 1.000 RC con 💎💎💎",rc7t:"Trivia de Riders",rc7d:"Gana RiderCoins respondiendo preguntas y ganando retos",rc8t:"Connect 4",rc8d:"Gana partidas en modo asíncrono o en directo y llévate los RC",footerPrivacy:"Política de privacidad",footerContact:"Contacto",footerCopy:"© 2026 RiderStats · Desarrollado por <strong>18Systems</strong> · Todos los derechos reservados."
+      f14t:"Slot Machine",f14d:"Prueba suerte en la Slot Machine. 3 giros gratis al día (10 con Premium). Jackpot de 1.000 RC con tres diamantes 💎.",f15t:"Trivia de Riders",f15d:"Responde preguntas sobre el mundo del reparto. Acepta retos de otros riders y gana RiderCoins.",f16t:"Connect 4",f16d:"Juega al 4 en raya contra la IA o en tiempo real contra otro rider. Gana RiderCoins con cada victoria.",f17t:"Meta Diaria con IA",f17d:"Fija tu objetivo de ingresos diario. La IA analiza tu progreso y deja comentarios personalizados en tu historial.",rc6t:"Slot Machine",rc6d:"3 giros gratis al día. Jackpot: 1.000 RC con 💎💎💎",rc7t:"Trivia de Riders",rc7d:"Gana RiderCoins respondiendo preguntas y ganando retos",rc8t:"Connect 4",rc8d:"Gana partidas en modo asíncrono o en directo y llévate los RC",howLabel:"Cómo funciona",howTitle:"En 3 pasos, listo",howSub:"Sin complicaciones. De cero a controlando tus finanzas en menos de dos minutos.",s1t:"Descarga y regístrate",s1d:"Descarga la app, crea tu cuenta gratis y selecciona tus plataformas. Sin tarjeta, sin compromisos.",s2t:"Registra tu jornada",s2d:"Anota ingresos, propinas, gastos y activa el GPS para registrar tus km. En segundos, desde cualquier lugar.",s3t:"Analiza y conecta",s3d:"Consulta tu dashboard en tiempo real, gana RiderCoins y conecta con miles de riders de todo el mundo.",phoneNet:"↑ Neto este mes +12%",phoneDays:"días",footerPrivacy:"Política de privacidad",footerContact:"Contacto",footerCopy:"© 2026 RiderStats · Desarrollado por <strong>18Systems</strong> · Todos los derechos reservados."
     },
     en: {
       pageTitle:"RiderStats — App for riders and delivery drivers",
@@ -454,7 +561,7 @@
       rcLabel:"RiderCoins",rcTitle:"Earn coins<br/>while you work",rcSub:"RiderStats has its own coin system. Earn RiderCoins by logging your shifts, completing GPS routes, keeping your daily streak or winning duels. Redeem them in the app store.",
       rc1t:"Log income & expenses",rc1d:"Earn coins for every entry you make",rc2t:"Cover km with GPS",rc2d:"2 RiderCoins per km at delivery speed",rc3t:"Keep your daily streak",rc3d:"The more consecutive days, the higher your rewards multiplier",rc4t:"Win duels",rc4d:"Challenge a friend and the winner takes the coins",rc5t:"Daily spin",rc5d:"Spin every day and win prizes. Premium: 10 spins, free: 5",
       ctaTitle:"🚀 Now available in beta",ctaSub:"RiderStats is now available on Google Play for testers. Join and be among the first to try it!",ctaBtnLabel:"Available very soon on",ctaBtnChip:"Coming soon",
-      f14t:"Slot Machine",f14d:"Try your luck! 3 free spins a day (10 with Premium). Jackpot: 1,000 RC with three diamonds 💎.",f15t:"Rider Trivia",f15d:"Answer questions about the delivery world. Accept challenges from other riders and earn RiderCoins.",f16t:"Connect 4",f16d:"Play 4 in a row vs. the AI or in real time against another rider. Win RiderCoins with every victory.",f17t:"Daily Goal with AI",f17d:"Set your daily income target. AI analyzes your progress and leaves personalized comments in your history.",rc6t:"Slot Machine",rc6d:"3 free spins a day. Jackpot: 1,000 RC with 💎💎💎",rc7t:"Rider Trivia",rc7d:"Earn RiderCoins answering questions and winning challenges",rc8t:"Connect 4",rc8d:"Win async or live games and take the RC",footerPrivacy:"Privacy policy",footerContact:"Contact",footerCopy:"© 2026 RiderStats · Developed by <strong>18Systems</strong> · All rights reserved."
+      f14t:"Slot Machine",f14d:"Try your luck! 3 free spins a day (10 with Premium). Jackpot: 1,000 RC with three diamonds 💎.",f15t:"Rider Trivia",f15d:"Answer questions about the delivery world. Accept challenges from other riders and earn RiderCoins.",f16t:"Connect 4",f16d:"Play 4 in a row vs. the AI or in real time against another rider. Win RiderCoins with every victory.",f17t:"Daily Goal with AI",f17d:"Set your daily income target. AI analyzes your progress and leaves personalized comments in your history.",rc6t:"Slot Machine",rc6d:"3 free spins a day. Jackpot: 1,000 RC with 💎💎💎",rc7t:"Rider Trivia",rc7d:"Earn RiderCoins answering questions and winning challenges",rc8t:"Connect 4",rc8d:"Win async or live games and take the RC",howLabel:"How it works",howTitle:"3 steps, done",howSub:"No hassle. From zero to tracking your finances in under two minutes.",s1t:"Download & sign up",s1d:"Download the app, create your free account and choose your platforms. No card, no commitment.",s2t:"Log your day",s2d:"Record income, tips, expenses and activate GPS to track your km. In seconds, from anywhere.",s3t:"Analyze & connect",s3d:"Check your real-time dashboard, earn RiderCoins and connect with thousands of riders worldwide.",phoneNet:"↑ Net this month +12%",phoneDays:"days",footerPrivacy:"Privacy policy",footerContact:"Contact",footerCopy:"© 2026 RiderStats · Developed by <strong>18Systems</strong> · All rights reserved."
     },
     fr: {
       pageTitle:"RiderStats — App pour riders et livreurs",
@@ -491,7 +598,7 @@
       rcLabel:"RiderCoins",rcTitle:"Gagne des pièces<br/>pendant que tu travailles",rcSub:"RiderStats possède son propre système de pièces. Gagne des RiderCoins en enregistrant tes journées, en faisant des trajets GPS, en maintenant ta série ou en gagnant des duels.",
       rc1t:"Enregistre revenus et dépenses",rc1d:"Gagne des pièces pour chaque entrée que tu fais",rc2t:"Parcoure des km avec le GPS",rc2d:"2 RiderCoins par km à vitesse de livraison",rc3t:"Maintiens ta série quotidienne",rc3d:"Plus tu enchaînes les jours, plus le multiplicateur de récompenses est élevé",rc4t:"Gagne des duels",rc4d:"Défie un ami et le gagnant prend les pièces",rc5t:"Roue quotidienne",rc5d:"Tourne chaque jour et gagne des prix. Premium : 10 tours, gratuit : 5",
       ctaTitle:"🚀 Déjà disponible en bêta",ctaSub:"RiderStats est déjà disponible sur Google Play pour les testeurs. Rejoignez-nous !",ctaBtnLabel:"Disponible très bientôt sur",ctaBtnChip:"Bientôt",
-      f14t:"Machine à sous",f14d:"Tentez votre chance ! 3 tours gratuits par jour (10 avec Premium). Jackpot : 1 000 RC avec trois diamants 💎.",f15t:"Trivia Rider",f15d:"Répondez à des questions sur le monde de la livraison. Acceptez des défis et gagnez des RiderCoins.",f16t:"Connect 4",f16d:"Jouez au 4 d'affilée contre l'IA ou en temps réel. Gagnez des RiderCoins à chaque victoire.",f17t:"Objectif Quotidien IA",f17d:"Fixez votre objectif de revenus quotidien. L'IA analyse vos progrès et laisse des commentaires personnalisés.",rc6t:"Machine à sous",rc6d:"3 tours gratuits par jour. Jackpot : 1 000 RC avec 💎💎💎",rc7t:"Trivia Rider",rc7d:"Gagnez des RiderCoins en répondant à des questions",rc8t:"Connect 4",rc8d:"Gagnez des parties et emportez les RC",footerPrivacy:"Politique de confidentialité",footerContact:"Contact",footerCopy:"© 2026 RiderStats · Développé par <strong>18Systems</strong> · Tous droits réservés."
+      f14t:"Machine à sous",f14d:"Tentez votre chance ! 3 tours gratuits par jour (10 avec Premium). Jackpot : 1 000 RC avec trois diamants 💎.",f15t:"Trivia Rider",f15d:"Répondez à des questions sur le monde de la livraison. Acceptez des défis et gagnez des RiderCoins.",f16t:"Connect 4",f16d:"Jouez au 4 d'affilée contre l'IA ou en temps réel. Gagnez des RiderCoins à chaque victoire.",f17t:"Objectif Quotidien IA",f17d:"Fixez votre objectif de revenus quotidien. L'IA analyse vos progrès et laisse des commentaires personnalisés.",rc6t:"Machine à sous",rc6d:"3 tours gratuits par jour. Jackpot : 1 000 RC avec 💎💎💎",rc7t:"Trivia Rider",rc7d:"Gagnez des RiderCoins en répondant à des questions",rc8t:"Connect 4",rc8d:"Gagnez des parties et emportez les RC",howLabel:"Comment ça marche",howTitle:"3 étapes, c'est tout",howSub:"Aucune complication. De zéro à la maîtrise de tes finances en moins de deux minutes.",s1t:"Télécharge et inscris-toi",s1d:"Télécharge l'app, crée ton compte gratuit et sélectionne tes plateformes. Sans carte, sans engagement.",s2t:"Enregistre ta journée",s2d:"Note tes revenus, pourboires, dépenses et active le GPS pour tes km. En quelques secondes, de partout.",s3t:"Analyse et connecte-toi",s3d:"Consulte ton tableau de bord en temps réel, gagne des RiderCoins et connecte-toi avec des milliers de riders.",phoneNet:"↑ Net ce mois +12%",phoneDays:"jours",footerPrivacy:"Politique de confidentialité",footerContact:"Contact",footerCopy:"© 2026 RiderStats · Développé par <strong>18Systems</strong> · Tous droits réservés."
     },
     pt: {
       pageTitle:"RiderStats — App para riders e estafetas",
@@ -528,7 +635,7 @@
       rcLabel:"RiderCoins",rcTitle:"Ganha moedas<br/>enquanto trabalhas",rcSub:"RiderStats tem o seu próprio sistema de moedas. Ganha RiderCoins por registar as tuas jornadas, completar rotas GPS, manter a tua série ou ganhar duelos.",
       rc1t:"Regista rendimentos e despesas",rc1d:"Ganha moedas por cada registo que fazes",rc2t:"Percorre km com o GPS",rc2d:"2 RiderCoins por km a velocidade de entrega",rc3t:"Mantém a tua série diária",rc3d:"Quanto mais dias seguidos, maior o multiplicador de prémios",rc4t:"Ganha duelos",rc4d:"Desafia um amigo e o vencedor fica com as moedas",rc5t:"Roleta diária",rc5d:"Gira todos os dias e ganha prémios. Premium: 10 giros, gratuito: 5",
       ctaTitle:"🚀 Já disponível em beta",ctaSub:"RiderStats já está disponível no Google Play para testers. Junta-te e sê dos primeiros a experimentar!",ctaBtnLabel:"Disponível muito em breve em",ctaBtnChip:"Em breve",
-      f14t:"Caça-Níqueis",f14d:"Tente sua sorte! 3 giros grátis por dia (10 com Premium). Jackpot: 1.000 RC com três diamantes 💎.",f15t:"Trivia de Riders",f15d:"Responda perguntas sobre o mundo das entregas. Aceite desafios de outros riders e ganhe RiderCoins.",f16t:"Connect 4",f16d:"Jogue 4 em linha contra a IA ou em tempo real. Ganhe RiderCoins a cada vitória.",f17t:"Meta Diária com IA",f17d:"Defina sua meta diária de receitas. A IA analisa seu progresso e deixa comentários personalizados.",rc6t:"Caça-Níqueis",rc6d:"3 giros grátis por dia. Jackpot: 1.000 RC com 💎💎💎",rc7t:"Trivia de Riders",rc7d:"Ganhe RiderCoins respondendo perguntas e vencendo desafios",rc8t:"Connect 4",rc8d:"Vença partidas e leve os RC",footerPrivacy:"Política de privacidade",footerContact:"Contacto",footerCopy:"© 2026 RiderStats · Desenvolvido por <strong>18Systems</strong> · Todos os direitos reservados."
+      f14t:"Caça-Níqueis",f14d:"Tente sua sorte! 3 giros grátis por dia (10 com Premium). Jackpot: 1.000 RC com três diamantes 💎.",f15t:"Trivia de Riders",f15d:"Responda perguntas sobre o mundo das entregas. Aceite desafios de outros riders e ganhe RiderCoins.",f16t:"Connect 4",f16d:"Jogue 4 em linha contra a IA ou em tempo real. Ganhe RiderCoins a cada vitória.",f17t:"Meta Diária com IA",f17d:"Defina sua meta diária de receitas. A IA analisa seu progresso e deixa comentários personalizados.",rc6t:"Caça-Níqueis",rc6d:"3 giros grátis por dia. Jackpot: 1.000 RC com 💎💎💎",rc7t:"Trivia de Riders",rc7d:"Ganhe RiderCoins respondendo perguntas e vencendo desafios",rc8t:"Connect 4",rc8d:"Vença partidas e leve os RC",howLabel:"Como funciona",howTitle:"3 passos, pronto",howSub:"Sem complicações. De zero a controlar as tuas finanças em menos de dois minutos.",s1t:"Descarrega e regista-te",s1d:"Descarrega a app, cria a tua conta grátis e seleciona as tuas plataformas. Sem cartão, sem compromisso.",s2t:"Regista o teu dia",s2d:"Anota rendimentos, gorjetas, despesas e ativa o GPS para registar os teus km. Em segundos, de qualquer lugar.",s3t:"Analisa e conecta",s3d:"Consulta o teu dashboard em tempo real, ganha RiderCoins e conecta com milhares de riders de todo o mundo.",phoneNet:"↑ Líquido este mês +12%",phoneDays:"dias",footerPrivacy:"Política de privacidade",footerContact:"Contacto",footerCopy:"© 2026 RiderStats · Desenvolvido por <strong>18Systems</strong> · Todos os direitos reservados."
     },
     de: {
       pageTitle:"RiderStats — App für Rider und Lieferfahrer",
@@ -565,7 +672,7 @@
       rcLabel:"RiderCoins",rcTitle:"Verdiene Münzen<br/>während du arbeitest",rcSub:"RiderStats hat sein eigenes Münzsystem. Verdiene RiderCoins durch das Erfassen deiner Schichten, GPS-Routen, tägliche Serie oder gewonnene Duelle.",
       rc1t:"Einnahmen & Ausgaben erfassen",rc1d:"Münzen für jeden Eintrag verdienen",rc2t:"Km mit GPS zurücklegen",rc2d:"2 RiderCoins pro km auf Liefergeschwindigkeit",rc3t:"Tägliche Serie halten",rc3d:"Je mehr aufeinanderfolgende Tage, desto höher der Multiplikator",rc4t:"Duelle gewinnen",rc4d:"Freund herausfordern und der Gewinner bekommt die Münzen",rc5t:"Tägliches Glücksrad",rc5d:"Täglich drehen und Preise gewinnen. Premium: 10 Drehungen, kostenlos: 5",
       ctaTitle:"🚀 Jetzt in der Beta verfügbar",ctaSub:"RiderStats ist jetzt auf Google Play für Tester verfügbar. Jetzt mitmachen!",,ctaBtnLabel:"Sehr bald verfügbar auf",ctaBtnChip:"Bald",
-      f14t:"Spielautomat",f14d:"Versuche dein Glück! 3 Gratisspins pro Tag (10 mit Premium). Jackpot: 1.000 RC mit drei Diamanten 💎.",f15t:"Rider-Trivia",f15d:"Beantworte Fragen über die Welt der Lieferfahrer. Nimm Herausforderungen an und verdiene RiderCoins.",f16t:"Connect 4",f16d:"Spiele Vier gewinnt gegen die KI oder in Echtzeit. Gewinne RiderCoins bei jedem Sieg.",f17t:"Tagesziel mit KI",f17d:"Setze dein tägliches Einkommensziel. Die KI analysiert deinen Fortschritt und hinterlässt personalisierte Kommentare.",rc6t:"Spielautomat",rc6d:"3 Gratisspins pro Tag. Jackpot: 1.000 RC mit 💎💎💎",rc7t:"Rider-Trivia",rc7d:"Verdiene RiderCoins mit Fragen und Herausforderungen",rc8t:"Connect 4",rc8d:"Gewinne Spiele und nimm die RC mit",footerPrivacy:"Datenschutzrichtlinie",footerContact:"Kontakt",footerCopy:"© 2026 RiderStats · Entwickelt von <strong>18Systems</strong> · Alle Rechte vorbehalten."
+      f14t:"Spielautomat",f14d:"Versuche dein Glück! 3 Gratisspins pro Tag (10 mit Premium). Jackpot: 1.000 RC mit drei Diamanten 💎.",f15t:"Rider-Trivia",f15d:"Beantworte Fragen über die Welt der Lieferfahrer. Nimm Herausforderungen an und verdiene RiderCoins.",f16t:"Connect 4",f16d:"Spiele Vier gewinnt gegen die KI oder in Echtzeit. Gewinne RiderCoins bei jedem Sieg.",f17t:"Tagesziel mit KI",f17d:"Setze dein tägliches Einkommensziel. Die KI analysiert deinen Fortschritt und hinterlässt personalisierte Kommentare.",rc6t:"Spielautomat",rc6d:"3 Gratisspins pro Tag. Jackpot: 1.000 RC mit 💎💎💎",rc7t:"Rider-Trivia",rc7d:"Verdiene RiderCoins mit Fragen und Herausforderungen",rc8t:"Connect 4",rc8d:"Gewinne Spiele und nimm die RC mit",howLabel:"So funktioniert es",howTitle:"3 Schritte, fertig",howSub:"Kein Aufwand. Von null zur Finanzkontrolle in unter zwei Minuten.",s1t:"Herunterladen & registrieren",s1d:"App herunterladen, kostenloses Konto erstellen und Plattformen auswählen. Keine Karte, kein Vertrag.",s2t:"Deinen Tag erfassen",s2d:"Einnahmen, Trinkgelder, Ausgaben notieren und GPS aktivieren. In Sekunden, von überall.",s3t:"Analysieren & vernetzen",s3d:"Dashboard in Echtzeit prüfen, RiderCoins verdienen und mit tausenden Ridern weltweit verbinden.",phoneNet:"↑ Netto diesen Monat +12%",phoneDays:"Tage",footerPrivacy:"Datenschutzrichtlinie",footerContact:"Kontakt",footerCopy:"© 2026 RiderStats · Entwickelt von <strong>18Systems</strong> · Alle Rechte vorbehalten."
     },
     it: {
       pageTitle:"RiderStats — App per rider e fattorini",
@@ -602,7 +709,7 @@
       rcLabel:"RiderCoins",rcTitle:"Guadagna monete<br/>mentre lavori",rcSub:"RiderStats ha il suo sistema di monete. Guadagna RiderCoins registrando le tue giornate, completando percorsi GPS, mantenendo la streak o vincendo duelli.",
       rc1t:"Registra entrate e uscite",rc1d:"Guadagna monete per ogni voce che inserisci",rc2t:"Percorri km con il GPS",rc2d:"2 RiderCoins per km a velocità di consegna",rc3t:"Mantieni la streak giornaliera",rc3d:"Più giorni consecutivi, maggiore il moltiplicatore di premi",rc4t:"Vinci i duelli",rc4d:"Sfida un amico e il vincitore si porta le monete",rc5t:"Ruota quotidiana",rc5d:"Gira ogni giorno e vinci premi. Premium: 10 giri, gratuito: 5",
       ctaTitle:"🚀 Già disponibile in beta",ctaSub:"RiderStats è ora disponibile su Google Play per i tester. Unisciti e sii tra i primi a provarlo!",ctaBtnLabel:"Disponibile molto presto su",ctaBtnChip:"Prossimamente",
-      f14t:"Slot Machine",f14d:"Tenta la fortuna! 3 giri gratuiti al giorno (10 con Premium). Jackpot: 1.000 RC con tre diamanti 💎.",f15t:"Trivia dei Rider",f15d:"Rispondi a domande sul mondo delle consegne. Accetta sfide da altri rider e guadagna RiderCoins.",f16t:"Connect 4",f16d:"Gioca a Forza 4 contro l'IA o in tempo reale. Vinci RiderCoins ad ogni vittoria.",f17t:"Obiettivo Giornaliero IA",f17d:"Imposta il tuo obiettivo di reddito giornaliero. L'IA analizza i tuoi progressi e lascia commenti personalizzati.",rc6t:"Slot Machine",rc6d:"3 giri gratuiti al giorno. Jackpot: 1.000 RC con 💎💎💎",rc7t:"Trivia dei Rider",rc7d:"Guadagna RiderCoins rispondendo a domande e vincendo sfide",rc8t:"Connect 4",rc8d:"Vinci partite e porta a casa i RC",footerPrivacy:"Informativa sulla privacy",footerContact:"Contatto",footerCopy:"© 2026 RiderStats · Sviluppato da <strong>18Systems</strong> · Tutti i diritti riservati."
+      f14t:"Slot Machine",f14d:"Tenta la fortuna! 3 giri gratuiti al giorno (10 con Premium). Jackpot: 1.000 RC con tre diamanti 💎.",f15t:"Trivia dei Rider",f15d:"Rispondi a domande sul mondo delle consegne. Accetta sfide da altri rider e guadagna RiderCoins.",f16t:"Connect 4",f16d:"Gioca a Forza 4 contro l'IA o in tempo reale. Vinci RiderCoins ad ogni vittoria.",f17t:"Obiettivo Giornaliero IA",f17d:"Imposta il tuo obiettivo di reddito giornaliero. L'IA analizza i tuoi progressi e lascia commenti personalizzati.",rc6t:"Slot Machine",rc6d:"3 giri gratuiti al giorno. Jackpot: 1.000 RC con 💎💎💎",rc7t:"Trivia dei Rider",rc7d:"Guadagna RiderCoins rispondendo a domande e vincendo sfide",rc8t:"Connect 4",rc8d:"Vinci partite e porta a casa i RC",howLabel:"Come funziona",howTitle:"3 passi, fatto",howSub:"Nessuna complicazione. Da zero al controllo delle finanze in meno di due minuti.",s1t:"Scarica e registrati",s1d:"Scarica l'app, crea il tuo account gratuito e seleziona le tue piattaforme. Nessuna carta, nessun impegno.",s2t:"Registra la tua giornata",s2d:"Annotare entrate, mance, spese e attivare il GPS per i km. In pochi secondi, da qualsiasi posto.",s3t:"Analizza e connettiti",s3d:"Consulta la dashboard in tempo reale, guadagna RiderCoins e connettiti con migliaia di rider in tutto il mondo.",phoneNet:"↑ Netto questo mese +12%",phoneDays:"giorni",footerPrivacy:"Informativa sulla privacy",footerContact:"Contatto",footerCopy:"© 2026 RiderStats · Sviluppato da <strong>18Systems</strong> · Tutti i diritti riservati."
     },
     ro: {
       pageTitle:"RiderStats — Aplicație pentru rideri și curieri",
@@ -639,7 +746,7 @@
       rcLabel:"RiderCoins",rcTitle:"Câștigă monede<br/>în timp ce muncești",rcSub:"RiderStats are propriul sistem de monede. Câștigă RiderCoins înregistrând turele, completând trasee GPS, menținând seria sau câștigând dueluri.",
       rc1t:"Înregistrează venituri și cheltuieli",rc1d:"Câștigă monede pentru fiecare înregistrare",rc2t:"Parcurge km cu GPS",rc2d:"2 RiderCoins per km la viteză de livrare",rc3t:"Menține seria zilnică",rc3d:"Cu cât mai multe zile consecutive, cu atât mai mare multiplicatorul",rc4t:"Câștigă dueluri",rc4d:"Provoacă un prieten și câștigătorul ia monedele",rc5t:"Ruletă zilnică",rc5d:"Rotește în fiecare zi și câștigă premii. Premium: 10 rotiri, gratuit: 5",
       ctaTitle:"🚀 Deja disponibil în beta",ctaSub:"RiderStats este acum disponibil pe Google Play pentru testeri. Alătură-te și fii printre primii!",ctaBtnLabel:"Disponibil foarte curând pe",ctaBtnChip:"În curând",
-      f14t:"Aparat de jocuri",f14d:"Încearcă-ți norocul! 3 rotiri gratuite pe zi (10 cu Premium). Jackpot: 1.000 RC cu trei diamante 💎.",f15t:"Trivia Rider",f15d:"Răspunde la întrebări despre lumea livrărilor. Acceptă provocări de la alți rideri și câștigă RiderCoins.",f16t:"Connect 4",f16d:"Joacă 4 la rând contra IA sau în timp real. Câștigă RiderCoins la fiecare victorie.",f17t:"Obiectiv Zilnic cu IA",f17d:"Setează-ți obiectivul zilnic de venituri. IA îți analizează progresul și lasă comentarii personalizate.",rc6t:"Aparat de jocuri",rc6d:"3 rotiri gratuite pe zi. Jackpot: 1.000 RC cu 💎💎💎",rc7t:"Trivia Rider",rc7d:"Câștigă RiderCoins răspunzând la întrebări și câștigând provocări",rc8t:"Connect 4",rc8d:"Câștigă partide și ia RC",footerPrivacy:"Politica de confidențialitate",footerContact:"Contact",footerCopy:"© 2026 RiderStats · Dezvoltat de <strong>18Systems</strong> · Toate drepturile rezervate."
+      f14t:"Aparat de jocuri",f14d:"Încearcă-ți norocul! 3 rotiri gratuite pe zi (10 cu Premium). Jackpot: 1.000 RC cu trei diamante 💎.",f15t:"Trivia Rider",f15d:"Răspunde la întrebări despre lumea livrărilor. Acceptă provocări de la alți rideri și câștigă RiderCoins.",f16t:"Connect 4",f16d:"Joacă 4 la rând contra IA sau în timp real. Câștigă RiderCoins la fiecare victorie.",f17t:"Obiectiv Zilnic cu IA",f17d:"Setează-ți obiectivul zilnic de venituri. IA îți analizează progresul și lasă comentarii personalizate.",rc6t:"Aparat de jocuri",rc6d:"3 rotiri gratuite pe zi. Jackpot: 1.000 RC cu 💎💎💎",rc7t:"Trivia Rider",rc7d:"Câștigă RiderCoins răspunzând la întrebări și câștigând provocări",rc8t:"Connect 4",rc8d:"Câștigă partide și ia RC",howLabel:"Cum funcționează",howTitle:"3 pași, gata",howSub:"Fără complicații. De la zero la controlul finanțelor în mai puțin de două minute.",s1t:"Descarcă și înregistrează-te",s1d:"Descarcă aplicația, creează-ți contul gratuit și selectează platformele tale. Fără card, fără angajament.",s2t:"Înregistrează-ți ziua",s2d:"Notează venituri, bacșișuri, cheltuieli și activează GPS-ul pentru km. În câteva secunde, de oriunde.",s3t:"Analizează și conectează-te",s3d:"Consultă-ți tabloul de bord în timp real, câștigă RiderCoins și conectează-te cu mii de rideri din toată lumea.",phoneNet:"↑ Net luna aceasta +12%",phoneDays:"zile",footerPrivacy:"Politica de confidențialitate",footerContact:"Contact",footerCopy:"© 2026 RiderStats · Dezvoltat de <strong>18Systems</strong> · Toate drepturile rezervate."
     }
   };
 
@@ -682,6 +789,30 @@
   var browser = (navigator.language || 'es').slice(0,2).toLowerCase();
   var detected = saved || (supported.indexOf(browser) !== -1 ? browser : 'es');
   applyLang(detected);
+  
+    // ── Scroll reveal ────────────────────────────────────────────────────────
+    (function(){
+      const els = document.querySelectorAll('.reveal');
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
+      },{threshold:0.12});
+      els.forEach(el=>obs.observe(el));
+    })();
+
+    // ── Hero balance counter ──────────────────────────────────────────────────
+    (function(){
+      const el = document.getElementById('heroBalance');
+      if(!el) return;
+      const target = 1247.80;
+      let current = 0;
+      const step = target / 60;
+      const timer = setInterval(()=>{
+        current += step;
+        if(current >= target){ el.textContent = '€1.247,80'; clearInterval(timer); return; }
+        el.textContent = '€' + current.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      }, 25);
+    })();
+
   </script>
 </body>
 </html>
