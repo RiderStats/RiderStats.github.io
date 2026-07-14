@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://riderstatsapp.com/</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://riderstatsapp.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riderstatsapp.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://riderstatsapp.com/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://riderstatsapp.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://riderstatsapp.com/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://riderstatsapp.com/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://riderstatsapp.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riderstatsapp.com/"/>
+  </url>
+  <url>
+    <loc>https://riderstatsapp.com/privacy.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>
