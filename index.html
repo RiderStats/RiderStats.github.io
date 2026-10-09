@@ -138,6 +138,18 @@
     .feature-icon { font-size: 26px; margin-bottom: 12px; }
     .feature-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
     .feature-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .screenshot-heading { max-width: 640px; margin: 0 auto 38px; text-align: center; }
+    .screenshot-heading .section-sub { margin: 0 auto; }
+    .screenshot-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: start; }
+    .screenshot-card { min-width: 0; margin: 0; overflow: hidden; background: var(--card); border: 1px solid var(--border); border-radius: 16px; transition: transform 0.2s, border-color 0.2s; }
+    .screenshot-card:hover { transform: translateY(-3px); border-color: rgba(255,107,53,0.5); }
+    .screenshot-link { display: block; aspect-ratio: 9 / 16; overflow: hidden; background: #10101a; }
+    .screenshot-link img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .screenshot-caption { padding: 16px; }
+    .screenshot-caption h3 { font-size: 15px; font-weight: 750; margin-bottom: 5px; }
+    .screenshot-caption p { color: var(--muted); font-size: 12px; line-height: 1.5; }
+    @media (max-width: 760px) { .screenshot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } }
+    @media (max-width: 480px) { .screenshot-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; } }
     .platforms-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
     .platform-pill { background: var(--card); border: 1px solid var(--border); border-radius: 99px; padding: 9px 18px; font-size: 13px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 6px; }
     .premium-section { padding: 72px 24px; background: linear-gradient(135deg, rgba(255,107,53,0.07) 0%, rgba(255,107,53,0.02) 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -332,6 +344,59 @@
       <div class="feature-card"><div class="feature-icon">🧠</div><div class="feature-title" data-i18n="f15t">Trivia de Riders</div><div class="feature-desc" data-i18n="f15d">Responde preguntas sobre el mundo del reparto. Acepta retos de otros riders y gana RiderCoins.</div></div>
       <div class="feature-card"><div class="feature-icon">🔴</div><div class="feature-title" data-i18n="f16t">Connect 4</div><div class="feature-desc" data-i18n="f16d">Juega al 4 en raya contra la IA o en tiempo real contra otro rider. Gana RiderCoins con cada victoria.</div></div>
       <div class="feature-card"><div class="feature-icon">🎯</div><div class="feature-title" data-i18n="f17t">Meta Diaria con IA</div><div class="feature-desc" data-i18n="f17d">Fija tu objetivo de ingresos diario. La IA analiza tu progreso y deja comentarios personalizados en tu historial.</div></div>
+    </div>
+  </section>
+
+  <!-- SPANISH SCREENSHOTS -->
+  <section id="capturas" class="screenshot-section" lang="es" data-lang-only="es" hidden aria-labelledby="screenshots-title">
+    <div class="screenshot-heading">
+      <div class="section-label">Capturas en español</div>
+      <h2 id="screenshots-title">RiderStats por dentro</h2>
+      <p class="section-sub">Controla tus ingresos y gastos, revisa tu estrategia, registra rutas GPS y conecta con la comunidad.</p>
+    </div>
+    <div class="screenshot-grid">
+      <figure class="screenshot-card">
+        <a class="screenshot-link" href="assets/screenshots/es/01-ingresos-gastos.webp" target="_blank" rel="noopener" aria-label="Abrir la captura de ingresos y gastos en tamaño completo">
+          <img src="assets/screenshots/es/01-ingresos-gastos.webp" alt="Ingresos y gastos de RiderStats en un solo lugar" loading="lazy" decoding="async" />
+        </a>
+        <figcaption class="screenshot-caption"><h3>Ingresos y gastos</h3><p>Consulta tus cuentas y el resultado neto en un solo lugar.</p></figcaption>
+      </figure>
+      <figure class="screenshot-card">
+        <a class="screenshot-link" href="assets/screenshots/es/02-registra-entregas.webp" target="_blank" rel="noopener" aria-label="Abrir la captura de registro de ingresos en tamaño completo">
+          <img src="assets/screenshots/es/02-registra-entregas.webp" alt="Formulario para registrar un ingreso y elegir una plataforma" loading="lazy" decoding="async" />
+        </a>
+        <figcaption class="screenshot-caption"><h3>Registra tus entregas</h3><p>Añade el importe, la propina y la plataforma en segundos.</p></figcaption>
+      </figure>
+      <figure class="screenshot-card">
+        <a class="screenshot-link" href="assets/screenshots/es/03-estadisticas-comunidad.webp" target="_blank" rel="noopener" aria-label="Abrir la captura de estadísticas y comunidad en tamaño completo">
+          <img src="assets/screenshots/es/03-estadisticas-comunidad.webp" alt="Gráficos, estadísticas, juegos y comunidad RiderStats" loading="lazy" decoding="async" />
+        </a>
+        <figcaption class="screenshot-caption"><h3>Estadísticas y comunidad</h3><p>Compara plataformas y disfruta de juegos, rankings y consejos.</p></figcaption>
+      </figure>
+      <figure class="screenshot-card">
+        <a class="screenshot-link" href="assets/screenshots/es/04-meta-diaria.webp" target="_blank" rel="noopener" aria-label="Abrir la captura de meta diaria en tamaño completo">
+          <img src="assets/screenshots/es/04-meta-diaria.webp" alt="Meta diaria de ingresos y recompensa de RiderCoins" loading="lazy" decoding="async" />
+        </a>
+        <figcaption class="screenshot-caption"><h3>Tu meta diaria</h3><p>Supera objetivos, gana RiderCoins y escala posiciones.</p></figcaption>
+      </figure>
+      <figure class="screenshot-card">
+        <a class="screenshot-link" href="assets/screenshots/es/05-estrategia.webp" target="_blank" rel="noopener" aria-label="Abrir la captura de análisis de estrategia en tamaño completo">
+          <img src="assets/screenshots/es/05-estrategia.webp" alt="Análisis de estrategia por plataforma y franja horaria" loading="lazy" decoding="async" />
+        </a>
+        <figcaption class="screenshot-caption"><h3>Análisis de estrategia</h3><p>Descubre qué plataformas y horarios te funcionan mejor.</p></figcaption>
+      </figure>
+      <figure class="screenshot-card">
+        <a class="screenshot-link" href="assets/screenshots/es/06-social.webp" target="_blank" rel="noopener" aria-label="Abrir la captura de Social y comunidad en tamaño completo">
+          <img src="assets/screenshots/es/06-social.webp" alt="Foro, juegos, chats, grupos y duelos en Social" loading="lazy" decoding="async" />
+        </a>
+        <figcaption class="screenshot-caption"><h3>Social y comunidad rider</h3><p>Foro, juegos, chats, grupos y duelos en un mismo espacio.</p></figcaption>
+      </figure>
+      <figure class="screenshot-card">
+        <a class="screenshot-link" href="assets/screenshots/es/07-rutas-gps.webp" target="_blank" rel="noopener" aria-label="Abrir la captura de rutas GPS en tamaño completo">
+          <img src="assets/screenshots/es/07-rutas-gps.webp" alt="Registro de rutas GPS con RiderStats" loading="lazy" decoding="async" />
+        </a>
+        <figcaption class="screenshot-caption"><h3>Rutas GPS</h3><p>Registra tus kilómetros y consigue RiderCoins durante tus rutas.</p></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -855,6 +920,10 @@
     document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
       var key = el.getAttribute('data-i18n-html');
       if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.querySelectorAll('[data-lang-only]').forEach(function(el) {
+      var visibleLanguages = el.getAttribute('data-lang-only').split(',').map(function(value) { return value.trim(); });
+      el.hidden = visibleLanguages.indexOf(lang) === -1;
     });
     document.getElementById('html-root').lang = lang;
     document.getElementById('langCurrent').textContent = LABELS[lang] || lang.toUpperCase();
