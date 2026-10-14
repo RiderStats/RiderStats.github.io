@@ -122,7 +122,7 @@
     .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--muted); font-size: 14px; font-weight: 600; padding: 14px 24px; border-radius: 14px; text-decoration: none; border: 1px solid var(--border); transition: border-color 0.2s, color 0.2s; }
     .btn-secondary:hover { border-color: var(--orange); color: var(--text); }
     .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; align-items: center; }
-    .rc-coin { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(145deg, #FFD84D, #F59E0B, #D97706); border: 2.5px solid #B45309; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 12px; color: #78350F; box-shadow: 0 3px 10px rgba(245,158,11,0.45), inset 0 1px 2px rgba(255,255,255,0.35); margin: 0 auto 6px; letter-spacing: -0.5px; }
+    .rc-coin { width: 48px; height: 48px; display: block; object-fit: contain; margin: 0 auto 6px; filter: drop-shadow(0 3px 8px rgba(245,158,11,0.45)); }
     .stats-band { display: flex; justify-content: center; flex-wrap: wrap; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .stat-item { padding: 26px 40px; text-align: center; border-right: 1px solid var(--border); }
     .stat-item:last-child { border-right: none; }
@@ -315,7 +315,7 @@
     <div class="stat-item"><div class="stat-num">PDF+CSV</div><div class="stat-label" data-i18n="stat3">Informes fiscales</div></div>
     <div class="stat-item"><div class="stat-num">🏆</div><div class="stat-label" data-i18n="stat4">Ranking global</div></div>
     <div class="stat-item">
-      <div class="rc-coin">RC</div>
+      <img class="rc-coin" src="assets/ridercoin-master.webp" alt="" aria-hidden="true" width="48" height="48" />
       <div class="stat-label" data-i18n="stat5">RiderCoins gratis</div>
     </div>
     <div class="stat-item"><div class="stat-num" data-i18n="stat6num">Gratis</div><div class="stat-label" data-i18n="stat6">Para empezar</div></div>
