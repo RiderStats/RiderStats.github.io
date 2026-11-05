@@ -311,6 +311,8 @@
     document.addEventListener("keydown",event=>{if(event.key==="Escape"){menu.classList.remove("open");localeButton.setAttribute("aria-expanded","false");nav.classList.remove("open");menuButton.setAttribute("aria-expanded","false");localeButton.focus()}});
     const track=document.querySelector(".gallery-track"),count=document.querySelector(".gallery-count"),shots=[...track.querySelectorAll(".shot")];
     function firstVisibleIndex(){
+      const maxScrollLeft=track.scrollWidth-track.clientWidth;
+      if(maxScrollLeft>0&&track.scrollLeft>=maxScrollLeft-2)return shots.length-1;
       const edge=track.getBoundingClientRect().left+track.clientLeft+1;
       const index=shots.findIndex(shot=>shot.getBoundingClientRect().right>edge);
       return index<0?shots.length-1:index;
