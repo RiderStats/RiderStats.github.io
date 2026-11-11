@@ -38,7 +38,7 @@
 
   <main>
     <h1>Política de Privacidad</h1>
-    <p class="date">Última actualización: 7 de noviembre de 2026</p>
+    <p class="date">Última actualización: 11 de noviembre de 2026</p>
 
     <p>RiderStats ("nosotros", "la app") se compromete a proteger tu privacidad. Esta política explica qué datos recopilamos, cómo los usamos, con quién los compartimos y cuáles son tus derechos como usuario.</p>
 
@@ -58,7 +58,7 @@
     <h3>Uso de la ubicación</h3>
     <p>El seguimiento GPS solo se inicia cuando el usuario comienza una ruta y concede los permisos necesarios. Mientras está activo, también con la app minimizada, se registran coordenadas y horas para guardar el recorrido, consultar su historial y registrar los puntos GPS de los servicios añadidos. Si se crea un ingreso o gasto desde un servicio, puede quedar vinculado a ese punto y a la ruta. El usuario puede eliminar rutas desde «Mis Rutas»; eliminar una ruta no borra los ingresos o gastos del libro financiero.</p>
     <p>Una ruta guardada solo se comparte con otros usuarios si el usuario elige adjuntarla y publicarla en el foro. En ese caso se comparte el trazado GPS de esa ruta guardada; nunca se comparte una ruta activa ni la ubicación en directo. Además, quienes tengan Premium pueden activar voluntariamente el mapa comunitario: solo se usan servicios nuevos registrados después de activar la opción y se muestran como zonas agregadas de unos 500 m, únicamente cuando hay datos de al menos 5 riders. No se muestran nombres, direcciones, puntos exactos ni importes, y el usuario puede desactivar la opción.</p>
-    <p>El cálculo o recálculo de una ruta es una acción separada: al solicitarlo, la posición actual y el destino se envían al servidor de RiderStats. Según la configuración, Nominatim o GraphHopper pueden buscar el destino y BRouter, OSRM o GraphHopper calcular la ruta. Si el usuario abre la ruta en Google Maps, Google recibe el origen y el destino necesarios. Las consultas de destino y los resultados de geocodificación pueden permanecer en memoria del servidor hasta 6 horas; no se guardan en la cuenta ni en la base de datos. Los proveedores externos pueden registrar las solicitudes según sus propias políticas. Al mostrar el mapa también se solicitan mosaicos a OpenStreetMap.</p>
+    <p>RiderStats no ofrece actualmente búsqueda de destinos ni cálculo de rutas dentro de la aplicación. Si el usuario pulsa «IR» en un punto del Mapa de actividad y elige Google Maps, Waze, Apple Maps (en iOS) o HERE WeGo, la app seleccionada recibe las coordenadas de ese punto para mostrarlo o iniciar indicaciones. El proveedor trata las coordenadas conforme a su propia política de privacidad. Al mostrar el mapa de RiderStats también se solicitan mosaicos de OpenStreetMap.</p>
     <p>Por separado, al guardar un ingreso normal (no un gasto), la app puede obtener la posición actual con baja precisión si ya tiene permiso de ubicación en primer plano y redondearla a una cuadrícula aproximada de 1 km. El evento puede incluir plataforma, importe, propina y datos técnicos disponibles, como precisión, velocidad, rumbo, altitud y versión de la app. Mientras se conserva, queda asociado a un identificador interno de cuenta y a la fecha, por lo que no es anónimo. Se usa para estadísticas agregadas de actividad y zonas; solo resultados agregados podrían compartirse con colaboradores de movilidad o logística, no eventos individuales vinculados a una cuenta.</p>
 
     <h2>2. Cómo usamos tus datos</h2>
@@ -69,14 +69,13 @@
       <li>Gestionar el sistema social: amigos, mensajes, grupos y foro.</li>
       <li>Enviarte notificaciones push sobre duelos, resúmenes IA semanales y novedades.</li>
       <li>Registrar rutas GPS y puntos de servicios cuando el usuario activa el seguimiento, y permitir consultar el historial y el análisis de esas rutas.</li>
-      <li>Calcular rutas cuando el usuario lo solicita, enviando la posición y el destino a los proveedores indicados en esta política.</li>
       <li>Mejorar la app mediante estadísticas agregadas de actividad y zonas; los eventos individuales vinculados a una cuenta no se muestran como tales a otros usuarios.</li>
       <li>Compartir el trazado de una ruta guardada únicamente cuando el usuario decide publicarla en el foro, y mostrar zonas comunitarias agregadas solo tras activar voluntariamente esa opción.</li>
       <li>Prevenir fraude y uso abusivo de la plataforma.</li>
     </ul>
 
     <h2>3. Con quién compartimos tus datos</h2>
-    <p>No vendemos tus datos personales. El trazado de una ruta guardada solo se muestra a otros usuarios si eliges publicarla en el foro; tu ubicación en directo nunca se comparte allí. El mapa comunitario solo muestra zonas agregadas tras tu consentimiento. Al pedir un cálculo de ruta, la posición y el destino necesarios pueden enviarse a proveedores técnicos; por separado, solo resultados agregados de actividad y zonas podrían compartirse con colaboradores de movilidad o logística, no los eventos individuales vinculados a una cuenta.</p>
+    <p>No vendemos tus datos personales. El trazado de una ruta guardada solo se muestra a otros usuarios si eliges publicarla en el foro; tu ubicación en directo nunca se comparte allí. El mapa comunitario solo muestra zonas agregadas tras tu consentimiento. Si eliges abrir un punto del Mapa de actividad en una app externa, esta recibe las coordenadas del punto seleccionado y las trata según su política de privacidad. Por separado, solo resultados agregados de actividad y zonas podrían compartirse con colaboradores de movilidad o logística, no los eventos individuales vinculados a una cuenta.</p>
     <p>Entre los proveedores técnicos necesarios para las funciones que el usuario elige utilizar se encuentran:</p>
     <table>
       <tr><th>Proveedor</th><th>Uso</th><th>País</th></tr>
@@ -86,10 +85,8 @@
       <tr><td><strong>Meta (Facebook)</strong></td><td>Inicio de sesión con Facebook (si lo usas)</td><td>EE.UU.</td></tr>
       <tr><td><strong>OpenAI</strong></td><td>Análisis IA del asistente de soporte y consejos semanales Premium</td><td>EE.UU.</td></tr>
       <tr><td><strong>Google AdMob</strong></td><td>Mostrar anuncios en la versión gratuita. AdMob puede recopilar datos del dispositivo e identificadores publicitarios para personalizar anuncios. <a href="https://policies.google.com/privacy" target="_blank">Política de privacidad de Google</a></td><td>EE.UU.</td></tr>
-      <tr><td><strong>Nominatim / GraphHopper</strong></td><td>Búsqueda de destinos para calcular una ruta, según la configuración del proveedor</td><td>Según el servicio</td></tr>
-      <tr><td><strong>BRouter / OSRM / GraphHopper</strong></td><td>Cálculo de rutas solicitadas por el usuario</td><td>Según el servicio</td></tr>
       <tr><td><strong>OpenStreetMap</strong></td><td>Mosaicos del mapa que se muestran en la app</td><td>Según el servicio</td></tr>
-      <tr><td><strong>Google Maps</strong></td><td>Recibe el origen y destino solo si el usuario elige abrir una ruta en Google Maps</td><td>Según el servicio</td></tr>
+      <tr><td><strong>Google Maps / Waze / Apple Maps / HERE WeGo</strong></td><td>Reciben las coordenadas de un punto solo si el usuario elige abrirlo desde el Mapa de actividad</td><td>Según el servicio</td></tr>
     </table>
 
     <h2>4. Retención de datos</h2>
@@ -123,7 +120,7 @@
     <h2>7. Permisos que solicita la app</h2>
     <table>
       <tr><th>Permiso</th><th>Para qué</th><th>Obligatorio</th></tr>
-      <tr><td>Ubicación (en uso)</td><td>Posición actual para iniciar rutas, registrar puntos de servicio y calcular una ruta solicitada</td><td>No — solo al usar esas funciones</td></tr>
+      <tr><td>Ubicación (en uso)</td><td>Posición actual para iniciar el seguimiento GPS y registrar puntos de servicio y movimientos ubicados</td><td>No — solo al usar esas funciones</td></tr>
       <tr><td>Ubicación en segundo plano</td><td>Continuar el registro de la ruta iniciada por el usuario cuando minimiza la app. Se solicita tras informar de este uso y pedir confirmación.</td><td>No — solo durante el seguimiento GPS</td></tr>
       <tr><td>Notificaciones push</td><td>Alertas de duelos, mensajes y resúmenes</td><td>No</td></tr>
       <tr><td>Cámara / Galería</td><td>Foto de perfil y envío de imágenes en chats</td><td>No</td></tr>
